@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d14e4fce0c8dd49a2dcb62e3cafaf1, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
-  speed: 0.4
+  speed: 0.2
   hpMax: 100
   strength: 1
   armsRelaxed: {fileID: 0}

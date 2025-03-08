@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -57,6 +59,7 @@ namespace Assets
             currentCharacter.enabled = true;
             selectedEnemy.enabled = true;
             UpdateEnemyVisuals();
+            UpdatePlayerSlider();
         }
 
         public void Damage(CharacterTimer character, float amount)
@@ -67,11 +70,35 @@ namespace Assets
                 currentCharacter.CurrentHealth += currentHealthIncrease;
                 currentAttackBonus = 0;
                 currentHealthIncrease = 0;
+
+                if (enemySpriteMap.ContainsKey(selectedEnemy))
+                {
+                    StartCoroutine(FlashRed(enemySpriteMap[selectedEnemy]));
+                }
+                currentCharacter.currentTime = 0;
             }
-            else
+            else if (enemyCharacters.Contains(character))
             {
                 currentCharacter.CurrentHealth -= amount;
+                Camera.main.GetComponent<CameraShake>().ShakeCamera();
             }
+        }
+
+        private IEnumerator FlashRed(SpriteRenderer spriteRenderer)
+        {
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(0.05f);
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+
+
+
+
+
+
+            UpdateEnemyVisuals();
         }
 
         public void SwitchCharacter()
@@ -83,6 +110,7 @@ namespace Assets
                 return;
             }
 
+
             currentCharacter.GetComponent<CharacterTimer>().enabled = false;
 
             if (currentCharacterIndex < playerCharacters.Length - 1) currentCharacterIndex++;
@@ -92,6 +120,12 @@ namespace Assets
             currentCharacter.enabled = true;
             currentCharacter.currentTime = 0;
             playerHands.sprite = currentCharacter.stats.armsRelaxed;
+            UpdatePlayerSlider();
+        }
+
+        private void UpdatePlayerSlider()
+        {
+            playerSlider.targetGraphic.GetComponent<Image>().sprite = currentCharacter.stats.headSprite;
         }
 
         private void Update()
@@ -178,6 +212,8 @@ namespace Assets
 
             if (selectedEnemy.isDead)
             {
+
+                enemySpriteMap[selectedEnemy].color = Color.black;
                 foreach (var character in enemyCharacters)
                 {
                     if (!character.isDead)

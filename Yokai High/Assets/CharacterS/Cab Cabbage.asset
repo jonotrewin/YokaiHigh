@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d14e4fce0c8dd49a2dcb62e3cafaf1, type: 3}
+  m_Name: Cab Cabbage
+  m_EditorClassIdentifier: 
+  speed: 0.5
+  hpMax: 100
+  strength: 5
+  armsRelaxed: {fileID: 21300000, guid: f2180dd4c24897c42bc1a3fdfb4d6721, type: 3}
+  armHit: {fileID: 0}
+  armDamage: {fileID: 0}
+  characterSprite: {fileID: 0}
+  headSprite: {fileID: 21300000, guid: 55489e812ffcf1c45b6e3d714e5a6026, type: 3}

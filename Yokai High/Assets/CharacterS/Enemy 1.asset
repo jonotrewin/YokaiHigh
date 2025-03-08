@@ -18,7 +18,9 @@ MonoBehaviour:
   armsRelaxed: {fileID: 0}
   armHit: {fileID: 0}
   armDamage: {fileID: 0}
-  characterSprite: {fileID: 21300000, guid: a592573c73f88ba49b7bbf94240b4251, type: 3}
-  characterSpriteAttack: {fileID: 21300000, guid: 12781561e8a58bd46b184b1ab33e4c31,
+  characterSprite: {fileID: 21300000, guid: 092f5c54b856bcf41bb60c3da5e4549e, type: 3}
+  characterSpriteReady: {fileID: 21300000, guid: 5fb59ff4e3a252c48a2c120fd4a1489e,
+    type: 3}
+  characterSpriteAttack: {fileID: 21300000, guid: b7ca97c49a2762f4c8128003ebb4f37c,
     type: 3}
   headSprite: {fileID: 21300000, guid: a592573c73f88ba49b7bbf94240b4251, type: 3}

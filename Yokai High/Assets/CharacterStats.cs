@@ -13,6 +13,7 @@ namespace Assets
         public Sprite armHit;
         public Sprite armDamage;
         public Sprite characterSprite;
+        public Sprite characterSpriteReady;
         public Sprite characterSpriteAttack;
         public Sprite headSprite;
         

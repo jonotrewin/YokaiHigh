@@ -12,15 +12,15 @@ namespace Assets
 {
     public class CharacterTimer : MonoBehaviour
     {
-        [SerializeField] Slider slider;
-        BattleManager battleManager;
+
+        public BattleManager battleManager;
         public float currentTime = 0;
         float timeToAttack = 100;
         [SerializeField] public CharacterStats stats;
 
         float currentHealth = 100;
 
-        bool isAttacking = false;
+        public bool isAttacking = false;
 
         
 
@@ -39,7 +39,7 @@ namespace Assets
 
         private void Start()
         {
-            battleManager = FindAnyObjectByType<BattleManager>();
+
             CurrentHealth = stats.hpMax;
         }
 
@@ -65,6 +65,7 @@ namespace Assets
             isAttacking = false;
 
         }
+
 
     }
 }

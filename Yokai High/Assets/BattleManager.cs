@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Assets
 {
-    class BattleManager : MonoBehaviour
+    public class BattleManager : MonoBehaviour
     {
         [Header("Tweak Healing and Extra Damage here")]
         float healPerClick = 1f;
@@ -53,6 +53,11 @@ namespace Assets
             foreach (CharacterTimer timer in enemyCharacters)
             {
                 timer.enabled = true;
+                timer.battleManager = this;
+            }
+            foreach (CharacterTimer timer in playerCharacters)
+            {
+                timer.battleManager = this;
             }
 
             for (int i = 0; i < enemyRenderers.Length; i++)
@@ -191,6 +196,28 @@ namespace Assets
 
             CheckIfDead();
             ButtonEffects();
+
+            CheckIfReadyToAttack();
+        }
+
+        private void CheckIfReadyToAttack()
+        {
+            foreach (var enemy in enemyCharacters)
+            {
+                if (enemy.currentTime > 50 && enemy.currentTime < 80)
+                {
+                    enemySpriteMap[enemy].GetComponent<SpriteAnimator>().shakeIntensity = enemy.currentTime - 50;
+                    enemySpriteMap[enemy].GetComponent<SpriteAnimator>().PlayShake();
+                }
+                else if (enemy.currentTime > 80)
+                {
+                    enemySpriteMap[enemy].sprite = enemy.stats.characterSpriteReady;
+
+
+                }
+
+            }
+
         }
 
         private void SwitchEnemy(int direction)
@@ -287,7 +314,12 @@ namespace Assets
         public void StopCombat()
         {
             
-            
+            foreach(var character in playerCharacters)
+            { character.currentTime = 0;
+                character.isDead = false;
+                character.isAttacking = false;
+                character.enabled = false;
+            }
             PlayerInformation.Instance.ExitCombat();
             SceneManager.UnloadSceneAsync("Combat");
         }

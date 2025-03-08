@@ -1573,7 +1573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleManager: {fileID: 0}
   currentTime: 0
-  stats: {fileID: 11400000, guid: 5f45f4f6540c1d14bbfc1e4cdffac809, type: 2}
+  stats: {fileID: 11400000, guid: a752547acc9acf14b887658ef11f6248, type: 2}
   isAttacking: 0
   isDead: 0
 --- !u!114 &1985122233

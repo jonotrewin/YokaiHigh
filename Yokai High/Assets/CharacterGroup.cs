@@ -2,7 +2,7 @@
 
 namespace Assets
 {
-    class CharacterGroup : MonoBehaviour
+    public class CharacterGroup : MonoBehaviour
     {
         public CharacterTimer[] party;
     }

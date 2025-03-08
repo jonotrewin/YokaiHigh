@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,38 +10,46 @@ namespace Assets
 {
     class BattleManager : MonoBehaviour
     {
-        bool isRunning = false;
+        public bool isRunning = false;
 
         public CharacterTimer currentCharacter;
         CharacterTimer[] playerCharacters;
         int currentCharacterIndex = 0;
+        int currentEnemyIndex = 0;
         CharacterTimer[] enemyCharacters;
         CharacterTimer selectedEnemy;
 
         [SerializeField] UnityEngine.UI.Slider playerSlider;
+        [SerializeField] UnityEngine.UI.Slider enemyHealthBar;
         [SerializeField] Transform enemySliderContainer; // Assign UI container for enemy sliders
         [SerializeField] Image playerHands;
         [SerializeField] SpriteRenderer[] enemyRenderers; // Manually assigned renderers in the scene
 
-        float currentAttackBonus;
-        float currentHealthIncrease;
+        public float currentAttackBonus;
+        public float currentHealthIncrease;
 
         private Dictionary<CharacterTimer, Slider> enemySliders = new Dictionary<CharacterTimer, Slider>();
         private Dictionary<CharacterTimer, SpriteRenderer> enemySpriteMap = new Dictionary<CharacterTimer, SpriteRenderer>();
 
-        public void ActivateBattle(CharacterGroup player, CharacterGroup enemies)
+        public void ActivateBattle(CharacterGroup enemies)
         {
             isRunning = true;
-            playerCharacters = player.party;
+            playerCharacters = PlayerInformation.Instance.characterGroup.party;
             enemyCharacters = enemies.party;
             currentCharacter = playerCharacters[0];
             selectedEnemy = enemyCharacters[0];
 
+            foreach (CharacterTimer timer in enemyCharacters)
+            {
+                timer.enabled = true;
+            }
+
             for (int i = 0; i < enemyRenderers.Length; i++)
             {
+               
                 if (i < enemyCharacters.Length)
                 {
-                    enemyRenderers[i].gameObject.SetActive(true);
+                    enemyRenderers[i].transform.parent.gameObject.SetActive(true);
                     enemyRenderers[i].sprite = enemyCharacters[i].stats.characterSprite;
                     enemySpriteMap[enemyCharacters[i]] = enemyRenderers[i];
 
@@ -52,7 +61,8 @@ namespace Assets
                 }
                 else
                 {
-                    enemyRenderers[i].gameObject.SetActive(false); // Hide unused renderers
+                    enemyRenderers[i].transform.parent.gameObject.SetActive(false);
+                    // Hide unused renderers
                 }
             }
 
@@ -75,21 +85,39 @@ namespace Assets
                 {
                     StartCoroutine(FlashRed(enemySpriteMap[selectedEnemy]));
                 }
-                currentCharacter.currentTime = 0;
+
+                StartCoroutine(AnimateHit());
+                //currentCharacter.currentTime = 0;
             }
             else if (enemyCharacters.Contains(character))
             {
                 currentCharacter.CurrentHealth -= amount;
                 Camera.main.GetComponent<CameraShake>().ShakeCamera();
+                StartCoroutine(AnimateEnemyAttack(character));
+
             }
         }
 
+        private IEnumerator AnimateEnemyAttack(CharacterTimer character)
+        {
+            enemySpriteMap[character].sprite = selectedEnemy.stats.characterSpriteAttack;
+            yield return new WaitForSeconds(0.3f);
+            enemySpriteMap[character].sprite = selectedEnemy.stats.characterSprite;
+        }
+
+        private IEnumerator AnimateHit()
+        {
+            enemySpriteMap[selectedEnemy].transform.parent.GetComponent<SpriteAnimator>().PlayShake();
+            playerHands.sprite = currentCharacter.stats.armHit;
+            yield return new WaitForSeconds(0.5f);
+            playerHands.sprite = currentCharacter.stats.armsRelaxed;
+        }
         private IEnumerator FlashRed(SpriteRenderer spriteRenderer)
         {
             spriteRenderer.color = Color.red;
             yield return new WaitForSeconds(0.1f);
             spriteRenderer.color = Color.white;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.1f);
             spriteRenderer.color = Color.red;
             yield return new WaitForSeconds(0.1f);
 
@@ -116,6 +144,10 @@ namespace Assets
             if (currentCharacterIndex < playerCharacters.Length - 1) currentCharacterIndex++;
             else currentCharacterIndex = 0;
 
+            if(playerCharacters[currentCharacterIndex].isDead)
+            {
+                Debug.Log("Tried to choose dead character");
+            }
             currentCharacter = playerCharacters[currentCharacterIndex];
             currentCharacter.enabled = true;
             currentCharacter.currentTime = 0;
@@ -130,6 +162,7 @@ namespace Assets
 
         private void Update()
         {
+            if (!isRunning) return;
             playerSlider.value = currentCharacter.currentTime;
 
             // Update each enemy's slider
@@ -151,29 +184,42 @@ namespace Assets
 
         private void SwitchEnemy(int direction)
         {
-            if (enemyCharacters.Length <= 1) return;
+            if (enemyCharacters.Length < 1) return;
 
-            int currentIndex = Array.IndexOf(enemyCharacters, selectedEnemy);
-            int newIndex = currentIndex;
+            int startIndex = currentEnemyIndex;
 
-            for (int i = 1; i <= enemyCharacters.Length; i++)
+            for (int i = 0; i < enemyCharacters.Length; i++) // Loop to find a valid enemy
             {
-                newIndex = (currentIndex + (i * direction) + enemyCharacters.Length) % enemyCharacters.Length;
-                if (!enemyCharacters[newIndex].isDead)
+                currentEnemyIndex = (currentEnemyIndex + direction + enemyCharacters.Length) % enemyCharacters.Length;
+
+                if (!enemyCharacters[currentEnemyIndex].isDead)
                 {
-                    selectedEnemy = enemyCharacters[newIndex];
+                    selectedEnemy = enemyCharacters[currentEnemyIndex];
                     UpdateEnemyVisuals();
                     return;
                 }
             }
+
+            // If all enemies are dead, keep the original index
+            currentEnemyIndex = startIndex;
+            Debug.Log("No valid enemy to switch to.");
         }
+
+
 
         private void UpdateEnemyVisuals()
         {
             foreach (var enemy in enemyCharacters)
             {
+                enemySpriteMap[enemy].transform.parent.GetComponentInChildren<Slider>().value = enemy.CurrentHealth;
+                if (enemy.isDead)
+                {
+                    if (enemySpriteMap[enemy].color != Color.black) enemySpriteMap[enemy].color = Color.black;
+                    continue;
+                }
                 if (enemySpriteMap.ContainsKey(enemy))
                 {
+
                     enemySpriteMap[enemy].color = (enemy == selectedEnemy) ? Color.white : Color.gray;
                 }
             }
@@ -191,7 +237,7 @@ namespace Assets
             }
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                currentHealthIncrease += 0.3f;
+                currentHealthIncrease += 5f;
             }
         }
 
@@ -204,10 +250,10 @@ namespace Assets
                     if (!character.isDead)
                     {
                         SwitchCharacter();
-                        return;
+                        /*return*/;
                     }
                 }
-                StopCombat();
+                //StopCombat();
             }
 
             if (selectedEnemy.isDead)
@@ -219,11 +265,11 @@ namespace Assets
                     if (!character.isDead)
                     {
                         selectedEnemy = character;
-                        UpdateEnemyVisuals();
-                        return;
+                        //UpdateEnemyVisuals();
+                        /*return*/;
                     }
                 }
-                StopCombat();
+                /*StopCombat()*/;
             }
         }
 

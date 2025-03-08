@@ -13,7 +13,7 @@ public class TestBM : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.U))
         {
-            bm.ActivateBattle(player, enemy);
+            bm.ActivateBattle(enemy);
         }
     }
 }

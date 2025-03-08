@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.15
   hpMax: 100
-  strength: 5
+  strength: 10
   armsRelaxed: {fileID: 21300000, guid: 3dea5d412b5f857428be1370cb48f536, type: 3}
-  armHit: {fileID: 0}
+  armHit: {fileID: 286507988, guid: 13b0eaa0a83332f40970985ec0c857f0, type: 3}
   armDamage: {fileID: 0}
   characterSprite: {fileID: 0}
+  characterSpriteAttack: {fileID: 0}
   headSprite: {fileID: 21300000, guid: f0210a9685a8048499f4cd9ac95f6890, type: 3}

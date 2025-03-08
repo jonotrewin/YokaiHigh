@@ -15,6 +15,7 @@ public class CameraShake : MonoBehaviour
     {
         // Store the original rotation of the camera
         originalRotation = transform.rotation;
+       
     }
 
     // Method to start shaking the camera

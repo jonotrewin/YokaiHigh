@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ using UnityEngine.UIElements;
 
 namespace Assets
 {
-    class CharacterTimer : MonoBehaviour
+    public class CharacterTimer : MonoBehaviour
     {
         [SerializeField] Slider slider;
         BattleManager battleManager;
@@ -18,6 +19,8 @@ namespace Assets
         [SerializeField] public CharacterStats stats;
 
         float currentHealth = 100;
+
+        bool isAttacking = false;
 
         
 
@@ -46,14 +49,23 @@ namespace Assets
 
             if (currentTime < timeToAttack)
                 currentTime += stats.speed;
-            else
+            else if(!isAttacking)
             {
-                currentTime = 0;
-                battleManager.Damage(this,stats.strength);
+                isAttacking = true;
+                StartCoroutine(ResetTime());
             }
         }
 
-   
+        private IEnumerator ResetTime()
+        {
+         
+            battleManager.Damage(this, stats.strength);
+            yield return new WaitForSeconds(0.5f);
+            currentTime = 0;
+            isAttacking = false;
+
+        }
+
     }
 }
 

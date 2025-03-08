@@ -3,7 +3,37 @@ guid: 4705cc4bfd8bf564499ed0c12b44ae04
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass
+    second: {fileID: 2100000, guid: b06b784a9197f3e47b4be3c5312e9128, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metalic mat
+    second: {fileID: 2100000, guid: 4b960d031972bf744becbc2678689aaf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: normal_
+    second: {fileID: 2100000, guid: 3a8c6f8b3e91cd5479fbd5c3114600c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: paintings
+    second: {fileID: 2100000, guid: 60c4de2957a937d479e90edb29c34bc2, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: ImphenziaPalette01-256-Gradient
+    second: {fileID: 2800000, guid: f3e8644b75c7a3341a56a7cccfce5e7a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: color
+    second: {fileID: 2800000, guid: dfc49b889c392bb489b3d886ef214392, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -4,12 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Assets
 {
     class BattleManager : MonoBehaviour
     {
+        [Header("Tweak Healing and Extra Damage here")]
+        float healPerClick = 1f;
+        float extraDamagePerClick = 5f;
+        float timePerClick = 3f;
+
+        [Space(3f)]
         public bool isRunning = false;
 
         [SerializeField]Camera battleCam;
@@ -33,6 +40,8 @@ namespace Assets
         private Dictionary<CharacterTimer, Slider> enemySliders = new Dictionary<CharacterTimer, Slider>();
         private Dictionary<CharacterTimer, SpriteRenderer> enemySpriteMap = new Dictionary<CharacterTimer, SpriteRenderer>();
 
+        [SerializeField] GameObject winScreen;
+        [SerializeField] GameObject loseScreen;
         public void ActivateBattle(CharacterGroup enemies)
         {
             isRunning = true;
@@ -231,15 +240,15 @@ namespace Assets
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                currentAttackBonus += 1f;
+                currentAttackBonus += extraDamagePerClick;
             }
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                currentCharacter.currentTime += 3f;
+                currentCharacter.currentTime += timePerClick;
             }
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                currentHealthIncrease += 5f;
+                currentHealthIncrease += healPerClick;
             }
         }
 
@@ -252,10 +261,10 @@ namespace Assets
                     if (!character.isDead)
                     {
                         SwitchCharacter();
-                        /*return*/;
+                        return;
                     }
                 }
-                //StopCombat();
+                loseScreen.SetActive(true);
             }
 
             if (selectedEnemy.isDead)
@@ -268,17 +277,19 @@ namespace Assets
                     {
                         selectedEnemy = character;
                         //UpdateEnemyVisuals();
-                        /*return*/;
+                        return;
                     }
                 }
-                /*StopCombat()*/;
+                winScreen.SetActive(true);
             }
         }
 
-        private void StopCombat()
+        public void StopCombat()
         {
-
-            Debug.Log("YOU WIN!");
+            
+            
+            PlayerInformation.Instance.ExitCombat();
+            SceneManager.UnloadSceneAsync("Combat");
         }
     }
 }

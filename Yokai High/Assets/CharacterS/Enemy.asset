@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Enemy
   m_EditorClassIdentifier: 
   speed: 0.2
-  hpMax: 100
-  strength: 10
+  hpMax: 200
+  strength: 50
   armsRelaxed: {fileID: 0}
   armHit: {fileID: 0}
   armDamage: {fileID: 0}

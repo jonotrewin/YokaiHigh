@@ -12,6 +12,8 @@ namespace Assets
     {
         public bool isRunning = false;
 
+        [SerializeField]Camera battleCam;
+
         public CharacterTimer currentCharacter;
         CharacterTimer[] playerCharacters;
         int currentCharacterIndex = 0;
@@ -92,7 +94,7 @@ namespace Assets
             else if (enemyCharacters.Contains(character))
             {
                 currentCharacter.CurrentHealth -= amount;
-                Camera.main.GetComponent<CameraShake>().ShakeCamera();
+                battleCam.GetComponent<CameraShake>().ShakeCamera();
                 StartCoroutine(AnimateEnemyAttack(character));
 
             }
@@ -275,8 +277,8 @@ namespace Assets
 
         private void StopCombat()
         {
-            currentCharacter.gameObject.SetActive(false);
-            selectedEnemy.gameObject.SetActive(false);
+
+            Debug.Log("YOU WIN!");
         }
     }
 }

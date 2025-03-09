@@ -12,7 +12,13 @@ namespace Assets
         [SerializeField] GameObject prompt;
         private void OnTriggerStay(Collider other)
         {
-            if (PlayerInformation.Instance.isInCombat) return;
+            if (PlayerInformation.Instance.isInCombat)
+            {
+                if (prompt.activeInHierarchy == false)
+                    
+                return;
+                
+            }
 
             if (other.TryGetComponent<IInteractable>(out IInteractable interactable))
             {
@@ -22,6 +28,7 @@ namespace Assets
                 if(prompt.activeInHierarchy==false)
                 prompt.SetActive(true);
             }
+            else prompt.SetActive(false);
         }
         
         private void OnTriggerExit(Collider other)

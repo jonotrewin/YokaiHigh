@@ -458,6 +458,7 @@ namespace Assets
                     }
                 }
                 winScreen.SetActive(true);
+                selectedEnemy.GetComponentInParent<StartCombat>().onDefeat.Invoke();
             }
         }
 
@@ -479,6 +480,17 @@ namespace Assets
             AudioManager.Instance.Play("WorldMusic");
 
             selectedEnemy.GetComponentInParent<StartCombat>().onDefeat.Invoke();
+            foreach (var character in enemyCharacters)
+            {
+                character.currentTime = 0;
+                character.isDead = false;
+                character.isAttacking = false;
+                character.enabled = false;
+                character.CurrentHealth = character.stats.hpMax;
+            }
+
+
+
             PlayerInformation.Instance.ExitCombat();
             SceneManager.UnloadSceneAsync("Combat");
         }

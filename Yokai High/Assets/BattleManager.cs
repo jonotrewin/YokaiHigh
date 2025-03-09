@@ -47,7 +47,11 @@ namespace Assets
         public void ActivateBattle(CharacterGroup enemies)
         {
             isRunning = true;
+            
             playerCharacters = PlayerInformation.Instance.characterGroup.party;
+
+
+
             enemyCharacters = enemies.party;
             currentCharacter = playerCharacters[0];
             selectedEnemy = enemyCharacters[0];
@@ -347,6 +351,7 @@ namespace Assets
                 character.isAttacking = false;
                 character.enabled = false;
             }
+            selectedEnemy.GetComponentInParent<StartCombat>().onDefeat.Invoke();
             PlayerInformation.Instance.ExitCombat();
             SceneManager.UnloadSceneAsync("Combat");
         }

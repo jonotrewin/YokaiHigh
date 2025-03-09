@@ -15,7 +15,7 @@ namespace Assets
 
             if (other.TryGetComponent<IInteractable>(out IInteractable interactable))
             {
-                if(Input.GetKeyDown(KeyCode.E)) 
+                if(Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Fire1")) 
                 interactable.Interact();
             }
         }       

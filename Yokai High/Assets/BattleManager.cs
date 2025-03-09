@@ -6,15 +6,16 @@ using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Assets
 {
     public class BattleManager : MonoBehaviour
     {
         [Header("Tweak Healing and Extra Damage here")]
-        float healPerClick = 1f;
-        float extraDamagePerClick = 5f;
-        float timePerClick = 3f;
+        [SerializeField] float healPerClick = 1f;
+        [SerializeField] float extraDamagePerClick = 5f;
+        [SerializeField] float timePerClick = 3f;
 
         [Space(3f)]
         public bool isRunning = false;
@@ -30,6 +31,7 @@ namespace Assets
 
         [SerializeField] UnityEngine.UI.Slider playerSlider;
         [SerializeField] UnityEngine.UI.Slider enemyHealthBar;
+        [SerializeField] private Image image;
         [SerializeField] Transform enemySliderContainer; // Assign UI container for enemy sliders
         [SerializeField] Image playerHands;
         [SerializeField] SpriteRenderer[] enemyRenderers; // Manually assigned renderers in the scene
@@ -119,6 +121,8 @@ namespace Assets
             enemySpriteMap[character].sprite = selectedEnemy.stats.characterSpriteAttack;
             yield return new WaitForSeconds(0.3f);
             enemySpriteMap[character].sprite = selectedEnemy.stats.characterSprite;
+
+
         }
 
         private IEnumerator AnimateHit()
@@ -168,12 +172,14 @@ namespace Assets
             currentCharacter.enabled = true;
             currentCharacter.currentTime = 0;
             playerHands.sprite = currentCharacter.stats.armsRelaxed;
+            playerHands.GetComponent<Animator>().Play("HandsUp"); 
             UpdatePlayerSlider();
         }
 
         private void UpdatePlayerSlider()
         {
             playerSlider.targetGraphic.GetComponent<Image>().sprite = currentCharacter.stats.headSprite;
+            image.sprite = currentCharacter.stats.headSprite;
         }
 
         private void Update()
@@ -190,9 +196,21 @@ namespace Assets
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow)) { SwitchCharacter(); }
-            if (Input.GetKeyDown(KeyCode.Q)) { SwitchEnemy(-1); }
-            if (Input.GetKeyDown(KeyCode.E)) { SwitchEnemy(1); }
+            // Character switching
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetButtonDown("Jump"))
+            {
+                SwitchCharacter();
+            }
+
+            // Enemy selection
+            if (Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Next Select"))
+            {
+                SwitchEnemy(-1);
+            }
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Previous Select"))
+            {
+                SwitchEnemy(1);
+            }
 
             CheckIfDead();
             ButtonEffects();
@@ -204,17 +222,26 @@ namespace Assets
         {
             foreach (var enemy in enemyCharacters)
             {
-                if (enemy.currentTime > 50 && enemy.currentTime < 80)
+                if (enemy.currentTime > 0 && enemy.currentTime < 40)
                 {
-                    enemySpriteMap[enemy].GetComponent<SpriteAnimator>().shakeIntensity = enemy.currentTime - 50;
-                    enemySpriteMap[enemy].GetComponent<SpriteAnimator>().PlayShake();
+                    Animator shakerAnim = enemySpriteMap[enemy].GetComponentInChildren<Animator>();
+                    shakerAnim.Play("Base");
+
+
+                }
+                else if (enemy.currentTime > 40 && enemy.currentTime < 80)
+                {
+                    enemySpriteMap[enemy].sprite = enemy.stats.characterSpriteReady;
+                    Animator shakerAnim = enemySpriteMap[enemy].GetComponentInChildren<Animator>();
+                    shakerAnim.Play("Shake");
+
+
                 }
                 else if (enemy.currentTime > 80)
                 {
-                    enemySpriteMap[enemy].sprite = enemy.stats.characterSpriteReady;
-
-
+                    enemySpriteMap[enemy].GetComponentInChildren<Animator>().Play("Shake2");
                 }
+
 
             }
 
@@ -265,15 +292,15 @@ namespace Assets
 
         private void ButtonEffects()
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetButtonDown("Fire2"))
             {
                 currentAttackBonus += extraDamagePerClick;
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetButtonDown("Fire1"))
             {
                 currentCharacter.currentTime += timePerClick;
             }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetButtonDown("Fire3"))
             {
                 currentHealthIncrease += healPerClick;
             }

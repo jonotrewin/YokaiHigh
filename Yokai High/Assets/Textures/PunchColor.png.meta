@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5fb59ff4e3a252c48a2c120fd4a1489e
+guid: 6cb6f08a62ecd3540b782cc94ff64e64
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +121,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: PunchColor_0
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 1197
+        width: 951
+        height: 475
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ff7ad1c42cd2d84e8c984372918c3b6
+      internalID: -788081528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunchColor_5
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 761
+        width: 752
+        height: 394
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c89e0ab4e58ce4d4ab7387e64eb5a046
+      internalID: 2070870404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunchColor_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 149
+        width: 1109
+        height: 516
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f3e7e96b7eb09b478095512df3badde
+      internalID: -97341489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +195,36 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PunchColor_0: -788081528
+      PunchColor_1: 265963860
+      PunchColor_10: 916754209
+      PunchColor_11: -1230686356
+      PunchColor_12: -195964118
+      PunchColor_13: 287347488
+      PunchColor_14: -1344899281
+      PunchColor_15: -1573401900
+      PunchColor_16: 2042860976
+      PunchColor_17: -97341489
+      PunchColor_18: -2119804020
+      PunchColor_19: -337680915
+      PunchColor_2: 1486164289
+      PunchColor_20: 2044974511
+      PunchColor_21: -2026830711
+      PunchColor_22: -1863636807
+      PunchColor_23: -1597351093
+      PunchColor_24: -620294652
+      PunchColor_25: -737454496
+      PunchColor_26: 1454785454
+      PunchColor_27: 486483893
+      PunchColor_28: -737984500
+      PunchColor_3: -1252766712
+      PunchColor_4: -1747478281
+      PunchColor_5: 2070870404
+      PunchColor_6: -1039286311
+      PunchColor_7: 297637569
+      PunchColor_8: -420355711
+      PunchColor_9: -1461369165
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

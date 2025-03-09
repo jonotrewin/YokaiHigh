@@ -5,3 +5,21 @@ Goth Girl: You're in trouble now!
  -> What?
     <<startcombatup Sphere>>
 ===
+
+title: RecruitCab
+tags:
+---
+Cab: Please! Help me!
+Prefect: I'm going to chop you up, Brocoli Balls.
+Cab: I'm a cabbage!
+Prefect: And I'm...
+Prefect: (smiles)
+Prefect: ...racist!
+Cab: Noooooo, my only weakness!
+    -> I can't just stand by while an innocent Brocoli is under attack!
+        Cab: I'm not a broccoli!
+               <<startcombatup SphereTest>>
+    -> Not my monkeys, not my circus (leave)
+    
+===
+

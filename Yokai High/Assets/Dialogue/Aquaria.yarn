@@ -1,0 +1,75 @@
+﻿title: Aquaria
+tags:
+---
+<<declare $PufferfishDefeated = false >>
+<<if $AquariaSpoken is true>>
+    <<jump AquariaReturn>>
+<<endif>>
+Aquaria: (Crying)
+    -> Are...Are you ok?
+Aquaria: Shit.
+Aquaria: Ummm...yeah. It's whatevs.
+    -> It doesn't sound like whatevs
+    -> Why are you crying?
+Aquaria: Why don't you go and ask that asshole Pebba Pufferfish.
+Aquaria: He thinks that just because he's a prefect, he can go around breaking hearts.
+Cab: Aquaria...
+Cab: Aquaria's single...
+Aquaria: What did you say cabbage?
+Cab: (exclaims)
+Cab: Oh, nothing...
+    -> Ok, enough of that.
+    -> I think he has a crush on you!
+        Cab: No I don't!
+Aquaria: What do you want?
+    -> Help us take down the prefects. I want to get out of here.
+        Aquaria: I can't, not while Pebba is still walking around...
+            -> What if we took him out?
+                Cab: I'd kill for you, Aquaria.
+                Aquaria: Umm...no need for any murders.
+                Aquaria: But, sure. Teach him a lesson and I'll join you.
+            -> You mean that stupid Puffhead hanging around in the cafetaria? We already took him out! <<if $PufferfishDefeated>>
+                Aquaria: Seriously?
+                Aquaria: Well, I guess I'm in!
+                    <<AddCharacterToParty Aquaria>>
+<<set $AquariaSpoken to true>>>
+===
+
+title: AquariaReturn
+tags:
+---
+Aquaria: did you take care of Pufferfish?
+    -> Let's just say: the Puffer got popped. <<if $PufferfishDefeated>>
+        Aquaria: You blew him up?
+            -> No. It's a metaphor.
+                Aquaria: A what?
+                    -> Don't worry about it.
+            ->  Let's just say, his sporting days are over
+                    Cab: We broke his knee.
+                    Aquaria: Lol, nice.
+        Aquaria: Ok, I guess I'll tag along with you guys then.
+            <<AddCharacterToParty Aquaria>>
+    -> Not yet.
+        Aquaria: Well go do it then.
+        
+===
+title: PebbaPufferfish
+tags:
+---
+Pebba Pufferfish: What do you want, you little twerp.
+    -> What are you doing in here?
+        Pebba Pufferfish: I'm writing a letter to get back Aquaria.
+        Pebba Pufferfish: Not that it's any of your business.
+        Cab: (growls)
+        Pebba Pufferfish: What was that?
+        Cab: You...
+        Cab: YOU DON'T DESERVE HER!
+        Pebba Pufferfish: What the hell did you just say to me.'
+        Pebba Pufferfish: I'm going to kick your ass.
+        Cab: EEK! Protect me, Suki!
+            -> Sigh.
+            -> Oh come on.
+        <<startcombatup PebbaPufferfish>>
+    -> Oh, nothing...
+        Pebba Pufferfish: Well, get lost!
+===

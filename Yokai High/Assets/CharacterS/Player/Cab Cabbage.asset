@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d14e4fce0c8dd49a2dcb62e3cafaf1, type: 3}
   m_Name: Cab Cabbage
   m_EditorClassIdentifier: 
-  speed: 0.05
+  speed: 0.025
   hpMax: 150
   strength: 0.25
   armsRelaxed: {fileID: -1398922326, guid: 20a9f6983b6d6dc4f836c4ce431ac3dd, type: 3}

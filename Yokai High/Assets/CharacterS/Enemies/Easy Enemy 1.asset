@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d14e4fce0c8dd49a2dcb62e3cafaf1, type: 3}
   m_Name: Easy Enemy 1
   m_EditorClassIdentifier: 
-  speed: 0.152
-  hpMax: 125
-  strength: 25
+  speed: 0.132
+  hpMax: 80
+  strength: 15
   armsRelaxed: {fileID: 0}
   armHit: {fileID: 0}
   armDamage: {fileID: 0}

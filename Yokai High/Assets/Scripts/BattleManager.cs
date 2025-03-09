@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.EventSystems.EventTrigger;
 
+
 namespace Assets
 {
     public class BattleManager : MonoBehaviour
@@ -173,9 +174,9 @@ namespace Assets
 
         private IEnumerator AnimateEnemyAttack(CharacterTimer character)
         {
-            enemySpriteMap[character].sprite = selectedEnemy.stats.characterSpriteAttack;
+            enemySpriteMap[character].sprite =character.stats.characterSpriteAttack;
             yield return new WaitForSeconds(0.3f);
-            enemySpriteMap[character].sprite = selectedEnemy.stats.characterSprite;
+            enemySpriteMap[character].sprite = character.stats.characterSprite;
 
 
         }
@@ -368,25 +369,43 @@ namespace Assets
                 }
             }
         }
+        private bool wasLTPressed = false;
+        private bool wasRTPressed = false;
 
         private void ButtonEffects()
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetButtonDown("Fire2"))
+            float ltInput = Input.GetAxisRaw("LT");  // Read Left Trigger Input
+            float rtInput = Input.GetAxisRaw("RT");  // Read Right Trigger Input
+
+            bool isLTPressed = ltInput > 0.1f;
+            bool isRTPressed = rtInput > 0.1f;
+
+            // Right input: RT (Attack), RightArrow, Fire3, DamageBoost
+            if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetButtonDown("Fire2") || (isRTPressed && !wasRTPressed)))
             {
                 currentAttackBonus += extraDamagePerClick + (1.15f * currentCharacter.stats.strength);
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetButtonDown("Fire3"))
+
+            // Left input: LT (Speed), LeftArrow, Fire2, SpeedBoost
+            if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetButtonDown("Fire3") || (isLTPressed && !wasLTPressed)))
             {
-                float totalTimeToAdd = timePerClick + (float)(currentCharacter.stats.speed * 10f); // New calculation
+                float totalTimeToAdd = timePerClick + (float)(currentCharacter.stats.speed * 100f); // New calculation
                 StartCoroutine(AddOverTime(() => currentCharacter.currentTime += totalTimeToAdd / 10f, totalTimeToAdd));
                 Knob.Play("Knob animation");
             }
+
+            // Up input: UpArrow or Fire1 (Heal)
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetButtonDown("Fire1"))
             {
                 currentHealthIncrease += healPerClick + (0.01f * currentCharacter.stats.hpMax);
                 currentAttackBonus -= extraDamagePerClick + (1.15f * currentCharacter.stats.strength);
             }
+
+            // Store previous states to prevent continuous input
+            wasLTPressed = isLTPressed;
+            wasRTPressed = isRTPressed;
         }
+
 
         private IEnumerator AddOverTime(System.Action incrementAction, float totalAmount)
         {

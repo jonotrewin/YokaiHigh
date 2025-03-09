@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hard ENEMY
   m_EditorClassIdentifier: 
   speed: 0.13
-  hpMax: 350
+  hpMax: 250
   strength: 45
   armsRelaxed: {fileID: 0}
   armHit: {fileID: 0}

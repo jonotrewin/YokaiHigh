@@ -37,6 +37,7 @@ Beth the Bully: And I'm...
 Beth the Bully: (smiles)
 Beth the Racist: ...racist!
 Cab: Noooooo, my only weakness!
+Cab: Please help me. I'll join you if you save me!
     -> I can't just stand by while an innocent Brocoli is under attack!
         Cab: I'm not a broccoli!
                <<startcombatup PrefectBeth>>
@@ -72,6 +73,6 @@ Perro the Pufferfish: Have you seen my brother around? I sent him to get me some
         Perro the Pufferfish: WHAT?!
     -> I can go look for him, if you like?
 Perro the Pufferfish: Wait, what are you doing in the hallway?!
-<<startcombatup PrefectPerry>>
+<<startcombatup PrefectPerro>>
 
 ===

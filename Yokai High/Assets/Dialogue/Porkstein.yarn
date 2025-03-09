@@ -1,0 +1,41 @@
+﻿title: Porkstein
+tags:
+---
+Vice-Principal Porkstein: So!
+Vice-Principal Porkstein: You've made it past my prefects.
+Vice-Principal Porkstein: I was wondering when a new champion would take up the mantle of Akuhikari High.
+Vice-Principal Porkstein: I suppose you're expecting some kind of prize?
+    -> I just want to go home.
+    -> Listen here, Vice-Principal Piggy. I'm getting out of here.
+Vice-Principal Porkstein: (laughs) KIRIKIRIKIRIKIRI!
+Vice-Principal Porkstein: If you want to get out of this school...
+Vice-Principal Porkstein: It'll be over MY BROKEN BODY!
+    -> Fuck.
+<<startcombatup Porkstein>>
+===
+
+title: PorksteinDefeated
+tags: 
+---
+Narrator: (The pig lays before you. His body bloodied and broken)
+    -> Squeal for me, Piggy.
+    -> I've defeated you.
+Narrator: (He coughs up blood)
+Vice-Principal Porkstein: (smiles) You've bested me, you...
+Vice-Principal Porkstein: Metal-faced freak!
+Vice-Principal Porkstein: KIRIKIRIKIRIKIRI!
+Vice-Principal Porkstein: I'm....ugh
+Narrator: (The pig winces)
+Vice-Principal Porkstein: I'm proud of you...
+    -> Huh?
+    -> Enough mind games!
+Vice-Principal Porkstein: This was...ugh
+Vice-Principal Porkstein: This was all a test.
+Vice-Principal Porkstein: I had you put in detention because...
+Vice-Principal Porkstein: ...because I wanted to teach you the power of friendship.
+    ->...
+Vice-Principal Porkstein: ...
+    -> That's dumb I'm out of here.
+    -> You suck, pig.
+Vice-Principal Porkstein: Rude. 
+===

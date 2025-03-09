@@ -32,6 +32,7 @@ Aquaria: What do you want?
                 Aquaria: Seriously?
                 Aquaria: Well, I guess I'm in!
                     <<AddCharacterToParty Aquaria>>
+                    <<DisableCharacter Aquaria>>
 <<set $AquariaSpoken to true>>>
 ===
 
@@ -49,6 +50,7 @@ Aquaria: did you take care of Pufferfish?
                     Aquaria: Lol, nice.
         Aquaria: Ok, I guess I'll tag along with you guys then.
             <<AddCharacterToParty Aquaria>>
+            <<DisableCharacter Aquaria>>
     -> Not yet.
         Aquaria: Well go do it then.
         

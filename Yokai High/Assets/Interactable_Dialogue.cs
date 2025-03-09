@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine;
 using Yarn.Unity;
 using Assets;
+using Unity.VisualScripting;
 
 public class Interactable_Dialogue : MonoBehaviour, IInteractable
 {
@@ -81,4 +82,9 @@ public class Interactable_Dialogue : MonoBehaviour, IInteractable
         //_dialogueAudio.PlaySelectedDialogue();
     }
 
+    [YarnCommand("DisableCharacter")]
+    public void DisableCharacter()
+    {
+        this.gameObject.SetActive(false);
+    }
 }

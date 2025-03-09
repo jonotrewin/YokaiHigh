@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] private float speed = 5f;
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Animator movementAnimation;
 
     void Start()
     {
@@ -40,10 +41,13 @@ public class PlayerMovement : MonoBehaviour
         if (moveDirection.magnitude == 0)
         {
             rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            movementAnimation.Play("Stay");
         }
         else
         {
             rb.velocity = new Vector3(moveDirection.x * speed, rb.velocity.y, moveDirection.z * speed);
+            movementAnimation.Play("Walking");
+            AudioManager.Instance.Play("Walking");
         }
     }
 }

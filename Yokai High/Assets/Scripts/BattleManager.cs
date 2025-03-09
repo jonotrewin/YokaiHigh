@@ -135,6 +135,7 @@ namespace Assets
             }
             else if (enemyCharacters.Contains(character))
             {
+                AudioManager.Instance.Play("Hit");
                 currentCharacter.CurrentHealth -= amount;
                 battleCam.GetComponent<CameraShake>().ShakeCamera();
                 StartCoroutine(AnimateEnemyAttack(character));
@@ -193,8 +194,11 @@ namespace Assets
 
             BAMVisual.SetActive(true);
             BAMVisual.GetComponent<Animator>().Play("Pom");
+            AudioManager.Instance.Play("Punch Sound");
+            AudioManager.Instance.Play("Hit2");
             yield return StartCoroutine(AdjustFOV(96f, 85f, 0.25f));
             yield return StartCoroutine(AdjustFOV(85f, 96f, 0.25f)); // FOV goes back up immediately
+
 
             Debug.Log( currentAttackBonus);
             yield return new WaitForSeconds(0.5f);
@@ -389,6 +393,7 @@ namespace Assets
             if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetButtonDown("Fire2") || (isRTPressed && !wasRTPressed)))
             {
                 currentAttackBonus += extraDamagePerClick + (1.15f * currentCharacter.stats.strength);
+                AudioManager.Instance.Play("BoostDamage");
             }
 
             // Left input: LT (Speed), LeftArrow, Fire2, SpeedBoost
@@ -397,6 +402,7 @@ namespace Assets
                 float totalTimeToAdd = timePerClick + (float)(currentCharacter.stats.speed * 100f); // New calculation
                 StartCoroutine(AddOverTime(() => currentCharacter.currentTime += totalTimeToAdd / 10f, totalTimeToAdd));
                 Knob.Play("Knob animation");
+                AudioManager.Instance.Play("BoostSpeed");
             }
 
             // Up input: UpArrow or Fire1 (Heal)
@@ -404,6 +410,7 @@ namespace Assets
             {
                 currentHealthIncrease += healPerClick + (0.01f * currentCharacter.stats.hpMax);
                 currentAttackBonus -= extraDamagePerClick + (1.15f * currentCharacter.stats.strength);
+                AudioManager.Instance.Play("BoostHealth");
             }
 
             // Store previous states to prevent continuous input
@@ -464,6 +471,13 @@ namespace Assets
                 character.enabled = false;
                 character.CurrentHealth = character.stats.hpMax;
             }
+
+            AudioManager.Instance.Stop("CombatMusic");
+            AudioManager.Instance.Stop("CombatStart");
+
+            AudioManager.Instance.Play("WorldAmbience");
+            AudioManager.Instance.Play("WorldMusic");
+
             selectedEnemy.GetComponentInParent<StartCombat>().onDefeat.Invoke();
             PlayerInformation.Instance.ExitCombat();
             SceneManager.UnloadSceneAsync("Combat");

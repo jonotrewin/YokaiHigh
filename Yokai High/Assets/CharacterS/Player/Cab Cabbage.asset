@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7d14e4fce0c8dd49a2dcb62e3cafaf1, type: 3}
-  m_Name: Main Character
+  m_Name: Cab Cabbage
   m_EditorClassIdentifier: 
-  speed: 0.5
-  hpMax: 100
-  strength: 5
-  armsRelaxed: {fileID: -788081528, guid: 6cb6f08a62ecd3540b782cc94ff64e64, type: 3}
-  armHit: {fileID: -97341489, guid: 6cb6f08a62ecd3540b782cc94ff64e64, type: 3}
-  armDamage: {fileID: -788081528, guid: 6cb6f08a62ecd3540b782cc94ff64e64, type: 3}
+  speed: 0.1
+  hpMax: 200
+  strength: 2
+  armsRelaxed: {fileID: -1398922326, guid: 20a9f6983b6d6dc4f836c4ce431ac3dd, type: 3}
+  armHit: {fileID: 861351144, guid: 20a9f6983b6d6dc4f836c4ce431ac3dd, type: 3}
+  armDamage: {fileID: -1398922326, guid: 20a9f6983b6d6dc4f836c4ce431ac3dd, type: 3}
   characterSprite: {fileID: 0}
   characterSpriteReady: {fileID: 0}
   characterSpriteAttack: {fileID: 0}
-  headSprite: {fileID: 21300000, guid: 1f2add8bd565dfd4391da6af855e2b22, type: 3}
+  headSprite: {fileID: 21300000, guid: a6190cc20e62168418670907fb160e2a, type: 3}

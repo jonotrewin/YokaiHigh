@@ -44,6 +44,23 @@ namespace Assets
 
         [SerializeField] GameObject winScreen;
         [SerializeField] GameObject loseScreen;
+
+        [SerializeField] Animator Hand;
+        [SerializeField] GameObject BAMVisual;
+
+        [SerializeField] private Color chargeStartColor = Color.yellow; // Customizable in Inspector
+
+        [SerializeField] private Color chargeMidColor = Color.red; // Customizable in Inspector
+
+        [SerializeField] private Color chargeEndColor = Color.yellow; // Customizable in Inspector
+
+        [Header("Visual Settings")]
+
+        [SerializeField] private float starterValue = 0;
+        [SerializeField] private float midValue = 25;
+        [SerializeField] private float endValue = 40;
+
+
         public void ActivateBattle(CharacterGroup enemies)
         {
             isRunning = true;
@@ -99,6 +116,9 @@ namespace Assets
                 currentAttackBonus = 0;
                 currentHealthIncrease = 0;
 
+                
+
+
                 if (enemySpriteMap.ContainsKey(selectedEnemy))
                 {
                     StartCoroutine(FlashRed(enemySpriteMap[selectedEnemy]));
@@ -116,6 +136,40 @@ namespace Assets
             }
         }
 
+        private void HandAnimationLogic()
+        {
+
+            if (currentCharacter.currentTime >= 50)
+            {
+                
+            }
+            else if (currentCharacter.currentTime >= 25)
+            {
+               
+            }
+
+
+
+
+
+
+            if (currentAttackBonus >= endValue)
+            {
+
+                Hand.gameObject.GetComponent<Image>().color = chargeEndColor;
+            }
+            else if (currentAttackBonus >= midValue)
+            {
+                Hand.Play("ChargeMid");
+                Hand.gameObject.GetComponent<Image>().color = chargeMidColor;
+            }
+            else if (currentAttackBonus > starterValue)
+            {
+                Hand.Play("ChargeStart");
+                Hand.gameObject.GetComponent<Image>().color = chargeStartColor;
+            }
+        }
+
         private IEnumerator AnimateEnemyAttack(CharacterTimer character)
         {
             enemySpriteMap[character].sprite = selectedEnemy.stats.characterSpriteAttack;
@@ -129,8 +183,15 @@ namespace Assets
         {
             enemySpriteMap[selectedEnemy].transform.parent.GetComponent<SpriteAnimator>().PlayShake();
             playerHands.sprite = currentCharacter.stats.armHit;
+            Hand.Play("ChargeHit");
+
+            BAMVisual.SetActive(true);
+            BAMVisual.GetComponent<Animator>().Play("Pom");
+
             yield return new WaitForSeconds(0.5f);
             playerHands.sprite = currentCharacter.stats.armsRelaxed;
+            Hand.gameObject.GetComponent<Image>().color = Color.white;
+            BAMVisual.SetActive(false);
         }
         private IEnumerator FlashRed(SpriteRenderer spriteRenderer)
         {
@@ -180,13 +241,14 @@ namespace Assets
         {
             playerSlider.targetGraphic.GetComponent<Image>().sprite = currentCharacter.stats.headSprite;
             image.sprite = currentCharacter.stats.headSprite;
+
         }
 
         private void Update()
         {
             if (!isRunning) return;
             playerSlider.value = currentCharacter.currentTime;
-
+            HandAnimationLogic();
             // Update each enemy's slider
             foreach (var enemy in enemyCharacters)
             {
@@ -296,13 +358,23 @@ namespace Assets
             {
                 currentAttackBonus += extraDamagePerClick;
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetButtonDown("Fire1"))
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetButtonDown("Fire3"))
             {
-                currentCharacter.currentTime += timePerClick;
+                StartCoroutine(AddOverTime(() => currentCharacter.currentTime += timePerClick / 10f, timePerClick));
             }
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetButtonDown("Fire3"))
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetButtonDown("Fire1"))
             {
                 currentHealthIncrease += healPerClick;
+            }
+        }
+
+        private IEnumerator AddOverTime(System.Action incrementAction, float totalAmount)
+        {
+            float amountPerTick = totalAmount / 10f; // Spread over 1 second in 10 steps
+            for (int i = 0; i < 10; i++)
+            {
+                incrementAction.Invoke();
+                yield return new WaitForSeconds(0.1f);
             }
         }
 

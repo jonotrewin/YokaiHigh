@@ -123,55 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &245698465
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 245698466}
-  - component: {fileID: 245698467}
-  m_Layer: 0
-  m_Name: partymember (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &245698466
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 245698465}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1767932369}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &245698467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 245698465}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88207e63e7ae38144ab80f10189976ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  battleManager: {fileID: 0}
-  currentTime: 0
-  stats: {fileID: 11400000, guid: 4f96b5086af5b604bbee0555e4a26f28, type: 2}
-  isAttacking: 0
-  isDead: 0
 --- !u!1 &525428790
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,55 +241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f656399600a8641bcc00341e15a80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &764583954
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 764583955}
-  - component: {fileID: 764583956}
-  m_Layer: 0
-  m_Name: partymember (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &764583955
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764583954}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1767932369}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &764583956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764583954}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88207e63e7ae38144ab80f10189976ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  battleManager: {fileID: 0}
-  currentTime: 0
-  stats: {fileID: 11400000, guid: 0691efaac58970b459da97e37e492f8d, type: 2}
-  isAttacking: 0
-  isDead: 0
 --- !u!1 &768255933
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,57 +375,7 @@ Transform:
   m_Children:
   - {fileID: 1732056995}
   - {fileID: 1837465642}
-  - {fileID: 1245521963}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &993403025
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 993403027}
-  - component: {fileID: 993403026}
-  m_Layer: 0
-  m_Name: partymember (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &993403026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993403025}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88207e63e7ae38144ab80f10189976ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  battleManager: {fileID: 0}
-  currentTime: 0
-  stats: {fileID: 11400000, guid: 0691efaac58970b459da97e37e492f8d, type: 2}
-  isAttacking: 0
-  isDead: 0
---- !u!4 &993403027
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993403025}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1389413004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1156889019
 GameObject:
@@ -662,55 +514,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!1 &1245521962
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1245521963}
-  - component: {fileID: 1245521964}
-  m_Layer: 0
-  m_Name: partymember (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1245521963
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1245521962}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 768255939}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1245521964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1245521962}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88207e63e7ae38144ab80f10189976ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  battleManager: {fileID: 0}
-  currentTime: 0
-  stats: {fileID: 11400000, guid: 4f96b5086af5b604bbee0555e4a26f28, type: 2}
-  isAttacking: 0
-  isDead: 0
 --- !u!1 &1389412998
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,8 +549,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   party:
   - {fileID: 2035982051}
-  - {fileID: 993403026}
-  - {fileID: 2032608514}
 --- !u!114 &1389413000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -845,8 +646,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2035982052}
-  - {fileID: 993403027}
-  - {fileID: 2032608515}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1412326374
@@ -1104,7 +903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleManager: {fileID: 0}
   currentTime: 0
-  stats: {fileID: 11400000, guid: 4f96b5086af5b604bbee0555e4a26f28, type: 2}
+  stats: {fileID: 11400000, guid: 0691efaac58970b459da97e37e492f8d, type: 2}
   isAttacking: 0
   isDead: 0
 --- !u!4 &1732056995
@@ -1254,8 +1053,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1803308821}
-  - {fileID: 764583955}
-  - {fileID: 245698466}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1803308819
@@ -1289,7 +1086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleManager: {fileID: 0}
   currentTime: 0
-  stats: {fileID: 11400000, guid: 4f96b5086af5b604bbee0555e4a26f28, type: 2}
+  stats: {fileID: 11400000, guid: 0691efaac58970b459da97e37e492f8d, type: 2}
   isAttacking: 0
   isDead: 0
 --- !u!4 &1803308821
@@ -1338,7 +1135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleManager: {fileID: 0}
   currentTime: 0
-  stats: {fileID: 11400000, guid: 0691efaac58970b459da97e37e492f8d, type: 2}
+  stats: {fileID: 11400000, guid: 7ac6bf668a2cc53489e76b6e97fd9e12, type: 2}
   isAttacking: 0
   isDead: 0
 --- !u!4 &1837465642
@@ -1376,7 +1173,7 @@ GameObject:
   - component: {fileID: 1985122233}
   - component: {fileID: 1985122232}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1556,9 +1353,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   party:
-  - {fileID: 1985122230}
-  - {fileID: 1985122233}
   - {fileID: 1985122232}
+  - {fileID: 1985122230}
 --- !u!114 &1985122232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1583,7 +1379,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985122220}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88207e63e7ae38144ab80f10189976ff, type: 3}
   m_Name: 
@@ -1593,55 +1389,6 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: 2ab8764001551ef46b432415a2919446, type: 2}
   isAttacking: 0
   isDead: 0
---- !u!1 &2032608513
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2032608515}
-  - component: {fileID: 2032608514}
-  m_Layer: 0
-  m_Name: partymember (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2032608514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2032608513}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88207e63e7ae38144ab80f10189976ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  battleManager: {fileID: 0}
-  currentTime: 0
-  stats: {fileID: 11400000, guid: 4f96b5086af5b604bbee0555e4a26f28, type: 2}
-  isAttacking: 0
-  isDead: 0
---- !u!4 &2032608515
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2032608513}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1389413004}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2035982050
 GameObject:
   m_ObjectHideFlags: 0

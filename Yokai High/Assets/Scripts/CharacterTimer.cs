@@ -54,18 +54,32 @@ namespace Assets
             {
                 isAttacking = true;
                 StartCoroutine(ResetTime());
+                //StartCoroutine(TimeReste());
             }
         }
 
         private IEnumerator ResetTime()
         {
-         
+            
             battleManager.Damage(this, stats.strength);
             yield return new WaitForSeconds(0.5f);
             currentTime = 0;
             isAttacking = false;
 
         }
+
+        //private IEnumerator TimeReste()
+        //{
+            
+        //    yield return new WaitForSeconds(4f);
+
+        //    if (isAttacking == true)
+        //    {
+        //        currentTime = 0;
+        //        isAttacking = false;
+        //    }
+
+        //}
 
 
     }

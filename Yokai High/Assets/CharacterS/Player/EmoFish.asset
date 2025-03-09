@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d14e4fce0c8dd49a2dcb62e3cafaf1, type: 3}
   m_Name: EmoFish
   m_EditorClassIdentifier: 
-  speed: 0.25
-  hpMax: 100
+  speed: 0.1
+  hpMax: 80
   strength: 15
   armsRelaxed: {fileID: -1942243230, guid: ff667a0f6a5ce80418656fa986ca6f09, type: 3}
   armHit: {fileID: 1660743221, guid: ff667a0f6a5ce80418656fa986ca6f09, type: 3}

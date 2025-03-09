@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d14e4fce0c8dd49a2dcb62e3cafaf1, type: 3}
+  m_Name: Hard ENEMY
+  m_EditorClassIdentifier: 
+  speed: 0.13
+  hpMax: 350
+  strength: 45
+  armsRelaxed: {fileID: 0}
+  armHit: {fileID: 0}
+  armDamage: {fileID: 0}
+  characterSprite: {fileID: 21300000, guid: 6894526ccb9f27a4889948dbc23a5d61, type: 3}
+  characterSpriteReady: {fileID: 21300000, guid: 9a089281b4c5dda4785871f16031d2c9,
+    type: 3}
+  characterSpriteAttack: {fileID: 21300000, guid: df5a1811b525b4c4092870cb08d1d3a3,
+    type: 3}
+  headSprite: {fileID: -1737805875, guid: 13b0eaa0a83332f40970985ec0c857f0, type: 3}

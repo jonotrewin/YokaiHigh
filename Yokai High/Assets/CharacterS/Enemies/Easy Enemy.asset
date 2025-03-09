@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7d14e4fce0c8dd49a2dcb62e3cafaf1, type: 3}
-  m_Name: Enemy
+  m_Name: Easy Enemy
   m_EditorClassIdentifier: 
-  speed: 0.2
-  hpMax: 200
-  strength: 50
+  speed: 0.12
+  hpMax: 150
+  strength: 20
   armsRelaxed: {fileID: 0}
   armHit: {fileID: 0}
   armDamage: {fileID: 0}

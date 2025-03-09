@@ -5,20 +5,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using Yarn;
+using Yarn.Unity;
 
 namespace Assets
 {
-    public class StartCombat : MonoBehaviour, IInteractable
+    public class StartCombat : MonoBehaviour
     {
         CharacterGroup characterGroup;
+        [SerializeField]public UnityEvent onDefeat;
   
         private void Start()
         {
             
             characterGroup = GetComponent<CharacterGroup>();
+            onDefeat.AddListener(SetDefeated);
         }
         public void Interact()
+        {
+            StartCombatUp();
+        }
+
+        [YarnCommand("startcombatup")]
+        public void StartCombatUp()
         {
             StartCoroutine(LoadCombat());
         }
@@ -29,6 +40,15 @@ namespace Assets
             SceneManager.LoadScene("Combat", LoadSceneMode.Additive);
             yield return new WaitForSeconds(1);
             FindObjectOfType<BattleManager>().ActivateBattle(characterGroup);
+        }
+
+        public void SetDefeated()
+        {
+            var variableStorage = GameObject.FindObjectOfType<InMemoryVariableStorage>();
+     
+
+            variableStorage.SetValue("$"+this.GetInstanceID()+"defeated",true);
+
         }
     }
 }

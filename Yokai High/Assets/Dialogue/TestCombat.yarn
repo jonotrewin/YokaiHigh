@@ -1,0 +1,7 @@
+﻿title: TestCombat
+tags:
+---
+Goth Girl: You're in trouble now!
+ -> What?
+    <<startcombatup Sphere>>
+===

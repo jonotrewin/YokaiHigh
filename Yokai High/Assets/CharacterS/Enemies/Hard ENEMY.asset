@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   hpMax: 250
-  strength: 35
+  strength: 40
   armsRelaxed: {fileID: 0}
   armHit: {fileID: 0}
   armDamage: {fileID: 0}

@@ -46,6 +46,7 @@ namespace Assets
         [SerializeField] GameObject loseScreen;
 
         [SerializeField] Animator Hand;
+        [SerializeField] Animator Knob;
         [SerializeField] GameObject BAMVisual;
 
         [SerializeField] private Color chargeStartColor = Color.yellow; // Customizable in Inspector
@@ -187,12 +188,28 @@ namespace Assets
 
             BAMVisual.SetActive(true);
             BAMVisual.GetComponent<Animator>().Play("Pom");
+            yield return StartCoroutine(AdjustFOV(96f, 85f, 0.25f));
+            yield return StartCoroutine(AdjustFOV(85f, 96f, 0.25f)); // FOV goes back up immediately
 
+            Debug.Log( currentAttackBonus);
             yield return new WaitForSeconds(0.5f);
             playerHands.sprite = currentCharacter.stats.armsRelaxed;
             Hand.gameObject.GetComponent<Image>().color = Color.white;
             BAMVisual.SetActive(false);
         }
+
+        private IEnumerator AdjustFOV(float startFOV, float endFOV, float duration)
+        {
+            float elapsedTime = 0f;
+            while (elapsedTime < duration)
+            {
+                battleCam.fieldOfView = Mathf.Lerp(startFOV, endFOV, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            battleCam.fieldOfView = endFOV; // Ensure it reaches the exact target value
+        }
+
         private IEnumerator FlashRed(SpriteRenderer spriteRenderer)
         {
             spriteRenderer.color = Color.red;
@@ -356,15 +373,17 @@ namespace Assets
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetButtonDown("Fire2"))
             {
-                currentAttackBonus += extraDamagePerClick;
+                currentAttackBonus += extraDamagePerClick + (1.15f * currentCharacter.stats.strength);
             }
             if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetButtonDown("Fire3"))
             {
-                StartCoroutine(AddOverTime(() => currentCharacter.currentTime += timePerClick / 10f, timePerClick));
+                float totalTimeToAdd = timePerClick + (float)(currentCharacter.stats.speed * 10f); // New calculation
+                StartCoroutine(AddOverTime(() => currentCharacter.currentTime += totalTimeToAdd / 10f, totalTimeToAdd));
+                Knob.Play("Knob animation");
             }
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetButtonDown("Fire1"))
             {
-                currentHealthIncrease += healPerClick;
+                currentHealthIncrease += healPerClick + (0.01f * currentCharacter.stats.hpMax);
             }
         }
 

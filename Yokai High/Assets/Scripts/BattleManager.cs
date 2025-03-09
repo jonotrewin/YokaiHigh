@@ -384,6 +384,7 @@ namespace Assets
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetButtonDown("Fire1"))
             {
                 currentHealthIncrease += healPerClick + (0.01f * currentCharacter.stats.hpMax);
+                currentAttackBonus -= extraDamagePerClick + (1.15f * currentCharacter.stats.strength);
             }
         }
 

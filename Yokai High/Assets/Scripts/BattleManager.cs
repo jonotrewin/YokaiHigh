@@ -67,11 +67,11 @@ namespace Assets
         {
             isRunning = true;
             
-            playerCharacters = PlayerInformation.Instance.characterGroup.party;
+            playerCharacters = PlayerInformation.Instance.characterGroup.party.ToArray();
 
 
 
-            enemyCharacters = enemies.party;
+            enemyCharacters = enemies.party.ToArray();
             currentCharacter = playerCharacters[0];
             selectedEnemy = enemyCharacters[0];
 
@@ -178,7 +178,7 @@ namespace Assets
 
         private IEnumerator AnimateEnemyAttack(CharacterTimer character)
         {
-            enemySpriteMap[character].sprite =character.stats.characterSpriteAttack;
+            enemySpriteMap[character].sprite = character.stats.characterSpriteAttack;
             yield return new WaitForSeconds(0.3f);
             enemySpriteMap[character].sprite = character.stats.characterSprite;
 
@@ -361,6 +361,7 @@ namespace Assets
             foreach (var enemy in enemyCharacters)
             {
                 enemySpriteMap[enemy].transform.parent.GetComponentInChildren<Slider>().value = enemy.CurrentHealth;
+                enemySpriteMap[enemy].transform.parent.GetComponentInChildren<Slider>().maxValue = enemy.stats.hpMax;
                 if (enemy.isDead)
                 {
                     if (enemySpriteMap[enemy].color != Color.black) enemySpriteMap[enemy].color = Color.black;
@@ -461,6 +462,7 @@ namespace Assets
                 character.isDead = false;
                 character.isAttacking = false;
                 character.enabled = false;
+                character.CurrentHealth = character.stats.hpMax;
             }
             selectedEnemy.GetComponentInParent<StartCombat>().onDefeat.Invoke();
             PlayerInformation.Instance.ExitCombat();

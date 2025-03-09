@@ -1,0 +1,77 @@
+﻿title: Prefect1
+tags:
+---
+Shelby the Snitch: Where do you think you're going, Suki?
+    -> Out?
+        Shelby the Snitch: (laughs)
+        Shelby the Snitch: You've got detention, girlypop. 
+        Shelby the Snitch: Vice-Principal Porkstein told me that you're not allowed to leave the school.
+        Shelby the Snitch: Unless...
+            -> Unless?
+        Shelby the Snitch: Akuhikari Highschool has an ancient rule.
+        Shelby the Snitch: If you can beat all the prefects in combat
+        Shelby the Snitch: And there's no way you're getting past me.
+    -> I just wanted to talk to you?
+        Shelby the Snitch: Well, I don't want to talk to a little loser like you.
+        <<stop>>
+Shelby the Snitch: Go sit down.
+    -> Ok...
+        <<stop>>
+    -> You know what?
+        Shelby the Snitch: ...?
+            -> Your hair looks bad.
+            -> That hairband makes you look fat.
+            -> You've always been a bitch, Shelby. You were born a bitch, and you'll die a bitch.
+        Shelby the Snitch: WHAT?!
+        Shelby the Snitch: You're going down!
+        <<startcombatup PrefectShelby>>
+        
+===
+title: Prefect2
+tags:
+---
+Cab: Please! Help me!
+Beth the Bully: I'm going to chop you up, Brocoli Balls.
+Cab: I'm a cabbage!
+Beth the Bully: And I'm...
+Beth the Bully: (smiles)
+Beth the Racist: ...racist!
+Cab: Noooooo, my only weakness!
+    -> I can't just stand by while an innocent Brocoli is under attack!
+        Cab: I'm not a broccoli!
+               <<startcombatup PrefectBeth>>
+    -> Not my monkeys, not my circus (leave)
+    
+===
+title: Prefect3
+tags: 
+--- 
+Nellie the Nerd: Huehuehue, if it ishn't Shuki Shaito.
+    -> (sigh) What do you want Nellie?
+Nellie the Nerd: Shtrange to find you here. I shought you had detenshion.
+    -> Well, I did, but...
+Nellie the Nerd: (interrupts) But how couldsh you have detenshion, when you're acshually roaming around in the hallwaysh.
+    -> I'm trying to explain...
+Nellie the Nerd: (interrupts) I guessh I only have one queshtion for you.
+    -> ...
+Nellie the Nerd: ...
+    -> ...
+Nellie the Nerd: ...
+    -> What's the que...?
+Nellie the Nerd: WHERESH YOUR HALLPASSH!?
+<<startcombatup PrefectNellie>>
+===
+
+
+
+title: Prefect5
+tags:
+---
+Perro the Pufferfish: Have you seen my brother around? I sent him to get me some food from the cafeteria...
+    -> Your brother will never walk again. <<if $PufferfishDefeated>>
+        Perro the Pufferfish: WHAT?!
+    -> I can go look for him, if you like?
+Perro the Pufferfish: Wait, what are you doing in the hallway?!
+<<startcombatup PrefectPerry>>
+
+===

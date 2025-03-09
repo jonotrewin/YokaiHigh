@@ -20,6 +20,7 @@ namespace Assets
 
         float currentHealth = 100;
 
+
         public bool isAttacking = false;
 
         

@@ -1,0 +1,193 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &486593912746296041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1008727630491780537}
+  - component: {fileID: 8719686228255740591}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1008727630491780537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486593912746296041}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8719686228255740591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486593912746296041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c50f410785d4f7418b86faef00a91c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundCollection:
+  - name: Music
+    sounds:
+    - name: WorldAmbience
+      clip: {fileID: 8300000, guid: 7bab23ab005c691468c3e2501bfaade8, type: 3}
+      volume: 0.5
+      pitch: 1
+      source: {fileID: 0}
+      loop: 1
+      playOnAwake: 0
+      randomPitch: 0
+      randomClip: 0
+      canInterrupt: 0
+      minRandomPitch: 0
+      maxRandomPitch: 0
+      randomClips: []
+    - name: WorldMusic
+      clip: {fileID: 8300000, guid: 44f7afb9a7d48a741b34daf5613760af, type: 3}
+      volume: 0.3
+      pitch: 1
+      source: {fileID: 0}
+      loop: 1
+      playOnAwake: 0
+      randomPitch: 0
+      randomClip: 0
+      canInterrupt: 0
+      minRandomPitch: 0
+      maxRandomPitch: 0
+      randomClips: []
+    - name: CombatMusic
+      clip: {fileID: 8300000, guid: 7a798903293322b40823eec88ecff2c1, type: 3}
+      volume: 0.35
+      pitch: 1
+      source: {fileID: 0}
+      loop: 1
+      playOnAwake: 0
+      randomPitch: 0
+      randomClip: 0
+      canInterrupt: 0
+      minRandomPitch: 0
+      maxRandomPitch: 0
+      randomClips: []
+    - name: CombatStart
+      clip: {fileID: 8300000, guid: 3f2741954350cb3419501b5be6255e4b, type: 3}
+      volume: 0.65
+      pitch: 1
+      source: {fileID: 0}
+      loop: 0
+      playOnAwake: 0
+      randomPitch: 0
+      randomClip: 0
+      canInterrupt: 0
+      minRandomPitch: 0
+      maxRandomPitch: 0
+      randomClips: []
+    - name: Hit
+      clip: {fileID: 8300000, guid: 78eb7021113da084897c22b171db5fc2, type: 3}
+      volume: 0.65
+      pitch: 1
+      source: {fileID: 0}
+      loop: 0
+      playOnAwake: 0
+      randomPitch: 0
+      randomClip: 0
+      canInterrupt: 1
+      minRandomPitch: 0
+      maxRandomPitch: 0
+      randomClips: []
+    - name: Punch Sound
+      clip: {fileID: 8300000, guid: a9403aed64ceb334cb041ac35954d67b, type: 3}
+      volume: 0.65
+      pitch: 1
+      source: {fileID: 0}
+      loop: 0
+      playOnAwake: 0
+      randomPitch: 0
+      randomClip: 0
+      canInterrupt: 1
+      minRandomPitch: 0
+      maxRandomPitch: 0
+      randomClips: []
+    - name: Hit2
+      clip: {fileID: 8300000, guid: 6477a05551724044384bca9a2f67239a, type: 3}
+      volume: 0.65
+      pitch: 1
+      source: {fileID: 0}
+      loop: 0
+      playOnAwake: 0
+      randomPitch: 0
+      randomClip: 0
+      canInterrupt: 1
+      minRandomPitch: 0
+      maxRandomPitch: 0
+      randomClips: []
+    - name: BoostDamage
+      clip: {fileID: 8300000, guid: 8316b58baee0a134eb830e9235947a19, type: 3}
+      volume: 0.5
+      pitch: 0.6
+      source: {fileID: 0}
+      loop: 0
+      playOnAwake: 0
+      randomPitch: 0
+      randomClip: 0
+      canInterrupt: 1
+      minRandomPitch: 0
+      maxRandomPitch: 0
+      randomClips: []
+    - name: BoostSpeed
+      clip: {fileID: 8300000, guid: c288ca1e490eac648a01fc286f422612, type: 3}
+      volume: 0.65
+      pitch: 1.1
+      source: {fileID: 0}
+      loop: 0
+      playOnAwake: 0
+      randomPitch: 0
+      randomClip: 0
+      canInterrupt: 1
+      minRandomPitch: 0
+      maxRandomPitch: 0
+      randomClips: []
+    - name: BoostHealth
+      clip: {fileID: 8300000, guid: 8bf6762761f842948b134f24dd4bf920, type: 3}
+      volume: 0.5
+      pitch: 0.85
+      source: {fileID: 0}
+      loop: 0
+      playOnAwake: 0
+      randomPitch: 0
+      randomClip: 0
+      canInterrupt: 1
+      minRandomPitch: 0
+      maxRandomPitch: 0
+      randomClips: []
+    - name: Walking
+      clip: {fileID: 8300000, guid: 1fa18c2084efffc42a3a7f822d216a13, type: 3}
+      volume: 0.8
+      pitch: 1
+      source: {fileID: 0}
+      loop: 0
+      playOnAwake: 0
+      randomPitch: 0
+      randomClip: 0
+      canInterrupt: 0
+      minRandomPitch: 0
+      maxRandomPitch: 0
+      randomClips: []
+  mute: 0

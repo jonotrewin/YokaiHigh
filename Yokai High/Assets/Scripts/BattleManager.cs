@@ -6,15 +6,17 @@ using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
+
 
 namespace Assets
 {
     public class BattleManager : MonoBehaviour
     {
         [Header("Tweak Healing and Extra Damage here")]
-        float healPerClick = 1f;
-        float extraDamagePerClick = 5f;
-        float timePerClick = 3f;
+        [SerializeField] float healPerClick = 1f;
+        [SerializeField] float extraDamagePerClick = 5f;
+        [SerializeField] float timePerClick = 3f;
 
         [Space(3f)]
         public bool isRunning = false;
@@ -30,6 +32,7 @@ namespace Assets
 
         [SerializeField] UnityEngine.UI.Slider playerSlider;
         [SerializeField] UnityEngine.UI.Slider enemyHealthBar;
+        [SerializeField] private Image image;
         [SerializeField] Transform enemySliderContainer; // Assign UI container for enemy sliders
         [SerializeField] Image playerHands;
         [SerializeField] SpriteRenderer[] enemyRenderers; // Manually assigned renderers in the scene
@@ -42,11 +45,33 @@ namespace Assets
 
         [SerializeField] GameObject winScreen;
         [SerializeField] GameObject loseScreen;
+
+        [SerializeField] Animator Hand;
+        [SerializeField] Animator Knob;
+        [SerializeField] GameObject BAMVisual;
+
+        [SerializeField] private Color chargeStartColor = Color.yellow; // Customizable in Inspector
+
+        [SerializeField] private Color chargeMidColor = Color.red; // Customizable in Inspector
+
+        [SerializeField] private Color chargeEndColor = Color.yellow; // Customizable in Inspector
+
+        [Header("Visual Settings")]
+
+        [SerializeField] private float starterValue = 0;
+        [SerializeField] private float midValue = 25;
+        [SerializeField] private float endValue = 40;
+
+
         public void ActivateBattle(CharacterGroup enemies)
         {
             isRunning = true;
-            playerCharacters = PlayerInformation.Instance.characterGroup.party;
-            enemyCharacters = enemies.party;
+            
+            playerCharacters = PlayerInformation.Instance.characterGroup.party.ToArray();
+
+
+
+            enemyCharacters = enemies.party.ToArray();
             currentCharacter = playerCharacters[0];
             selectedEnemy = enemyCharacters[0];
 
@@ -97,6 +122,9 @@ namespace Assets
                 currentAttackBonus = 0;
                 currentHealthIncrease = 0;
 
+                
+
+
                 if (enemySpriteMap.ContainsKey(selectedEnemy))
                 {
                     StartCoroutine(FlashRed(enemySpriteMap[selectedEnemy]));
@@ -107,6 +135,7 @@ namespace Assets
             }
             else if (enemyCharacters.Contains(character))
             {
+                AudioManager.Instance.Play("Hit");
                 currentCharacter.CurrentHealth -= amount;
                 battleCam.GetComponent<CameraShake>().ShakeCamera();
                 StartCoroutine(AnimateEnemyAttack(character));
@@ -114,20 +143,82 @@ namespace Assets
             }
         }
 
+        private void HandAnimationLogic()
+        {
+
+            if (currentCharacter.currentTime >= 50)
+            {
+                
+            }
+            else if (currentCharacter.currentTime >= 25)
+            {
+               
+            }
+
+
+
+
+
+
+            if (currentAttackBonus >= endValue)
+            {
+
+                Hand.gameObject.GetComponent<Image>().color = chargeEndColor;
+            }
+            else if (currentAttackBonus >= midValue)
+            {
+                Hand.Play("ChargeMid");
+                Hand.gameObject.GetComponent<Image>().color = chargeMidColor;
+            }
+            else if (currentAttackBonus > starterValue)
+            {
+                Hand.Play("ChargeStart");
+                Hand.gameObject.GetComponent<Image>().color = chargeStartColor;
+            }
+        }
+
         private IEnumerator AnimateEnemyAttack(CharacterTimer character)
         {
-            enemySpriteMap[character].sprite = selectedEnemy.stats.characterSpriteAttack;
+            enemySpriteMap[character].sprite = character.stats.characterSpriteAttack;
             yield return new WaitForSeconds(0.3f);
-            enemySpriteMap[character].sprite = selectedEnemy.stats.characterSprite;
+            enemySpriteMap[character].sprite = character.stats.characterSprite;
+
+
         }
 
         private IEnumerator AnimateHit()
         {
             enemySpriteMap[selectedEnemy].transform.parent.GetComponent<SpriteAnimator>().PlayShake();
             playerHands.sprite = currentCharacter.stats.armHit;
+            Hand.Play("ChargeHit");
+
+            BAMVisual.SetActive(true);
+            BAMVisual.GetComponent<Animator>().Play("Pom");
+            AudioManager.Instance.Play("Punch Sound");
+            AudioManager.Instance.Play("Hit2");
+            yield return StartCoroutine(AdjustFOV(96f, 85f, 0.25f));
+            yield return StartCoroutine(AdjustFOV(85f, 96f, 0.25f)); // FOV goes back up immediately
+
+
+            Debug.Log( currentAttackBonus);
             yield return new WaitForSeconds(0.5f);
             playerHands.sprite = currentCharacter.stats.armsRelaxed;
+            Hand.gameObject.GetComponent<Image>().color = Color.white;
+            BAMVisual.SetActive(false);
         }
+
+        private IEnumerator AdjustFOV(float startFOV, float endFOV, float duration)
+        {
+            float elapsedTime = 0f;
+            while (elapsedTime < duration)
+            {
+                battleCam.fieldOfView = Mathf.Lerp(startFOV, endFOV, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            battleCam.fieldOfView = endFOV; // Ensure it reaches the exact target value
+        }
+
         private IEnumerator FlashRed(SpriteRenderer spriteRenderer)
         {
             spriteRenderer.color = Color.red;
@@ -168,19 +259,22 @@ namespace Assets
             currentCharacter.enabled = true;
             currentCharacter.currentTime = 0;
             playerHands.sprite = currentCharacter.stats.armsRelaxed;
+            playerHands.GetComponent<Animator>().Play("HandsUp"); 
             UpdatePlayerSlider();
         }
 
         private void UpdatePlayerSlider()
         {
             playerSlider.targetGraphic.GetComponent<Image>().sprite = currentCharacter.stats.headSprite;
+            image.sprite = currentCharacter.stats.headSprite;
+
         }
 
         private void Update()
         {
             if (!isRunning) return;
             playerSlider.value = currentCharacter.currentTime;
-
+            HandAnimationLogic();
             // Update each enemy's slider
             foreach (var enemy in enemyCharacters)
             {
@@ -190,9 +284,21 @@ namespace Assets
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow)) { SwitchCharacter(); }
-            if (Input.GetKeyDown(KeyCode.Q)) { SwitchEnemy(-1); }
-            if (Input.GetKeyDown(KeyCode.E)) { SwitchEnemy(1); }
+            // Character switching
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetButtonDown("Jump"))
+            {
+                SwitchCharacter();
+            }
+
+            // Enemy selection
+            if (Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Next Select"))
+            {
+                SwitchEnemy(-1);
+            }
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Previous Select"))
+            {
+                SwitchEnemy(1);
+            }
 
             CheckIfDead();
             ButtonEffects();
@@ -204,17 +310,26 @@ namespace Assets
         {
             foreach (var enemy in enemyCharacters)
             {
-                if (enemy.currentTime > 50 && enemy.currentTime < 80)
+                if (enemy.currentTime > 0 && enemy.currentTime < 40)
                 {
-                    enemySpriteMap[enemy].GetComponent<SpriteAnimator>().shakeIntensity = enemy.currentTime - 50;
-                    enemySpriteMap[enemy].GetComponent<SpriteAnimator>().PlayShake();
+                    Animator shakerAnim = enemySpriteMap[enemy].GetComponentInChildren<Animator>();
+                    shakerAnim.Play("Base");
+
+
+                }
+                else if (enemy.currentTime > 40 && enemy.currentTime < 80)
+                {
+                    enemySpriteMap[enemy].sprite = enemy.stats.characterSpriteReady;
+                    Animator shakerAnim = enemySpriteMap[enemy].GetComponentInChildren<Animator>();
+                    shakerAnim.Play("Shake");
+
+
                 }
                 else if (enemy.currentTime > 80)
                 {
-                    enemySpriteMap[enemy].sprite = enemy.stats.characterSpriteReady;
-
-
+                    enemySpriteMap[enemy].GetComponentInChildren<Animator>().Play("Shake2");
                 }
+
 
             }
 
@@ -250,6 +365,7 @@ namespace Assets
             foreach (var enemy in enemyCharacters)
             {
                 enemySpriteMap[enemy].transform.parent.GetComponentInChildren<Slider>().value = enemy.CurrentHealth;
+                enemySpriteMap[enemy].transform.parent.GetComponentInChildren<Slider>().maxValue = enemy.stats.hpMax;
                 if (enemy.isDead)
                 {
                     if (enemySpriteMap[enemy].color != Color.black) enemySpriteMap[enemy].color = Color.black;
@@ -262,20 +378,54 @@ namespace Assets
                 }
             }
         }
+        private bool wasLTPressed = false;
+        private bool wasRTPressed = false;
 
         private void ButtonEffects()
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            float ltInput = Input.GetAxisRaw("LT");  // Read Left Trigger Input
+            float rtInput = Input.GetAxisRaw("RT");  // Read Right Trigger Input
+
+            bool isLTPressed = ltInput > 0.1f;
+            bool isRTPressed = rtInput > 0.1f;
+
+            // Right input: RT (Attack), RightArrow, Fire3, DamageBoost
+            if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetButtonDown("Fire2") || (isRTPressed && !wasRTPressed)))
             {
-                currentAttackBonus += extraDamagePerClick;
+                currentAttackBonus += extraDamagePerClick + (1.15f * currentCharacter.stats.strength);
+                AudioManager.Instance.Play("BoostDamage");
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+
+            // Left input: LT (Speed), LeftArrow, Fire2, SpeedBoost
+            if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetButtonDown("Fire3") || (isLTPressed && !wasLTPressed)))
             {
-                currentCharacter.currentTime += timePerClick;
+                float totalTimeToAdd = timePerClick + (float)(currentCharacter.stats.speed * 100f); // New calculation
+                StartCoroutine(AddOverTime(() => currentCharacter.currentTime += totalTimeToAdd / 10f, totalTimeToAdd));
+                Knob.Play("Knob animation");
+                AudioManager.Instance.Play("BoostSpeed");
             }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+
+            // Up input: UpArrow or Fire1 (Heal)
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetButtonDown("Fire1"))
             {
-                currentHealthIncrease += healPerClick;
+                currentHealthIncrease += healPerClick + (0.01f * currentCharacter.stats.hpMax);
+                currentAttackBonus -= extraDamagePerClick + (1.15f * currentCharacter.stats.strength);
+                AudioManager.Instance.Play("BoostHealth");
+            }
+
+            // Store previous states to prevent continuous input
+            wasLTPressed = isLTPressed;
+            wasRTPressed = isRTPressed;
+        }
+
+
+        private IEnumerator AddOverTime(System.Action incrementAction, float totalAmount)
+        {
+            float amountPerTick = totalAmount / 10f; // Spread over 1 second in 10 steps
+            for (int i = 0; i < 10; i++)
+            {
+                incrementAction.Invoke();
+                yield return new WaitForSeconds(0.1f);
             }
         }
 
@@ -308,6 +458,7 @@ namespace Assets
                     }
                 }
                 winScreen.SetActive(true);
+                selectedEnemy.GetComponentInParent<StartCombat>().onDefeat.Invoke();
             }
         }
 
@@ -319,7 +470,27 @@ namespace Assets
                 character.isDead = false;
                 character.isAttacking = false;
                 character.enabled = false;
+                character.CurrentHealth = character.stats.hpMax;
             }
+
+            AudioManager.Instance.Stop("CombatMusic");
+            AudioManager.Instance.Stop("CombatStart");
+
+            AudioManager.Instance.Play("WorldAmbience");
+            AudioManager.Instance.Play("WorldMusic");
+
+            selectedEnemy.GetComponentInParent<StartCombat>().onDefeat.Invoke();
+            foreach (var character in enemyCharacters)
+            {
+                character.currentTime = 0;
+                character.isDead = false;
+                character.isAttacking = false;
+                character.enabled = false;
+                character.CurrentHealth = character.stats.hpMax;
+            }
+
+
+
             PlayerInformation.Instance.ExitCombat();
             SceneManager.UnloadSceneAsync("Combat");
         }

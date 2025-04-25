@@ -13,14 +13,20 @@ namespace Assets
 {
     public class BattleManager : MonoBehaviour
     {
-        [Header("Tweak Healing and Extra Damage here")]
+        [Header("Meow meow!!! :3")]
         [SerializeField] float healPerClick = 1f;
+
+        CharacterGroup _playerTeam;
+        CharacterGroup _enemyTeam;
+
+        Character _selectedTeammate;
+        Character _selectedEnemy;
 
 
 
         public void ActivateBattle(CharacterGroup enemies)
         {
-
+            _enemyTeam = enemies;
         }
 
         public void Damage(Character character, float amount)
@@ -31,55 +37,17 @@ namespace Assets
         private void HandAnimationLogic()
         {
 
-
         }
 
 
-        public void SwitchCharacter()
+        public void SwitchCharacter(Character selected)
         {
-
+            _selectedTeammate = selected;
         }
 
-        private void UpdatePlayerSlider()
+        public void SwitchTarget(Character selected)
         {
-
-
-        }
-
-        private void Update()
-        {
-
-        }
-
-        private void CheckIfReadyToAttack()
-        {
-
-
-        }
-
-        private void SwitchEnemy(int direction)
-        {
-
-        }
-
-
-
-        private void UpdateEnemyVisuals()
-        {
-
-        }
-        private bool wasLTPressed = false;
-        private bool wasRTPressed = false;
-
-        private void ButtonEffects()
-        {
-
-        }
-
-
-        private void CheckIfDead()
-        {
-
+            _selectedEnemy = selected;
         }
 
         public void StopCombat()

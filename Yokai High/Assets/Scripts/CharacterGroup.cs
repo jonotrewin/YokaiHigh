@@ -8,6 +8,7 @@ namespace Assets
     {
 
         public List<Character> party;
+
     }
 }
 

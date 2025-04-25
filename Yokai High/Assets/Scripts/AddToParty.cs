@@ -11,10 +11,11 @@ namespace Assets
 {
     public class AddToParty : MonoBehaviour
     {
-        public CharacterTimer characterToAdd;
+        public Character characterToAdd;
 
         [YarnCommand("AddCharacterToParty")]
-        public void AddCharacterToParty() { 
+        public void AddCharacterToParty()
+        {
             PlayerInformation.Instance.characterGroup.party.Add(characterToAdd);
         }
     }

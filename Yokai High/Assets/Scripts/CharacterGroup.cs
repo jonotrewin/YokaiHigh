@@ -7,7 +7,7 @@ namespace Assets
     public class CharacterGroup : MonoBehaviour
     {
 
-        public List<CharacterTimer> party;
+        public List<Character> party;
     }
 }
 

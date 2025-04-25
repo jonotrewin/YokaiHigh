@@ -9,6 +9,7 @@ namespace Assets
 {
     public class PlayerInteract : MonoBehaviour
     {
+<<<<<<< HEAD
         [SerializeField] GameObject prompt;
         private void OnTriggerStay(Collider other)
         {
@@ -37,5 +38,17 @@ namespace Assets
                 prompt.SetActive(false);
         }
        
+=======
+        private void OnTriggerStay(Collider other)
+        {
+            if (PlayerInformation.Instance.isInCombat) return;
+
+            if (other.TryGetComponent<IInteractable>(out IInteractable interactable))
+            {
+                if(Input.GetKeyDown(KeyCode.E)) 
+                interactable.Interact();
+            }
+        }       
+>>>>>>> main
     }
 }

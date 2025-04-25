@@ -9,46 +9,33 @@ namespace Assets
 {
     public class PlayerInteract : MonoBehaviour
     {
-<<<<<<< HEAD
         [SerializeField] GameObject prompt;
         private void OnTriggerStay(Collider other)
         {
             if (PlayerInformation.Instance.isInCombat)
             {
                 if (prompt.activeInHierarchy == false)
-                    
-                return;
-                
+
+                    return;
+
             }
 
             if (other.TryGetComponent<IInteractable>(out IInteractable interactable))
             {
-                if(Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Fire1")) 
-                interactable.Interact();
+                if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Fire1"))
+                    interactable.Interact();
 
-                if(prompt.activeInHierarchy==false)
-                prompt.SetActive(true);
+                if (prompt.activeInHierarchy == false)
+                    prompt.SetActive(true);
             }
             else prompt.SetActive(false);
         }
-        
+
         private void OnTriggerExit(Collider other)
         {
             if (other.TryGetComponent<IInteractable>(out _))
                 prompt.SetActive(false);
         }
-       
-=======
-        private void OnTriggerStay(Collider other)
-        {
-            if (PlayerInformation.Instance.isInCombat) return;
 
-            if (other.TryGetComponent<IInteractable>(out IInteractable interactable))
-            {
-                if(Input.GetKeyDown(KeyCode.E)) 
-                interactable.Interact();
-            }
-        }       
->>>>>>> main
     }
 }

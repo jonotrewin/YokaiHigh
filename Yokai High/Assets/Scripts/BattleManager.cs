@@ -25,7 +25,6 @@ namespace Assets
         [Header("Variables")]
         [SerializeField] Camera battleCam;
         [SerializeField] EnemyCombatInstance[] enemyRenderers = Array.Empty<EnemyCombatInstance>(); // Manually assigned renderers in the scene
-        [SerializeField] Animator Shaker;
 
 
 

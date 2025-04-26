@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7d14e4fce0c8dd49a2dcb62e3cafaf1, type: 3}
-  m_Name: Easy Enemy
+  m_Name: CappuccinaBallerina
   m_EditorClassIdentifier: 
-  Name: Base
-  Description: fdsqfdsq
-  IsDiscovered: 1
-  speed: 0.5
-  currentHP: 40
-  hpMax: 120
+  Name: Cappuccina Ballerina
+  Description: JONATHAN PUT SHIT HERE
+  IsDiscovered: 0
+  speed: 1
+  currentHP: 100
+  hpMax: 100
   strength: 10
-  characterSprite: {fileID: 21300000, guid: 4f8b2f7ec37867a4fa6fcf23d8c37a53, type: 3}
-  characterSpriteReady: {fileID: 21300000, guid: da2e22b9c26d6c04c991875cd22e2dda,
+  characterSprite: {fileID: 21300000, guid: 8bc3e8dda3845234c8209e20d44cad53, type: 3}
+  characterSpriteReady: {fileID: 21300000, guid: 41adca612883d6243a1fa4cb91548372,
     type: 3}
-  characterSpriteAttack: {fileID: 21300000, guid: 5d94db45ca805774fb361f32cc74feab,
+  characterSpriteAttack: {fileID: 21300000, guid: 6d9948c85fb3a0e49ad698e7391c1872,
     type: 3}
   _actions:
   - Action: 1
     Weight: 2
-  - Action: 0
+  - Action: 2
     Weight: 2

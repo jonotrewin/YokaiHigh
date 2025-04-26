@@ -26,6 +26,8 @@ namespace Assets
         [SerializeField] Camera battleCam;
         [SerializeField] EnemyCombatInstance[] enemyRenderers = Array.Empty<EnemyCombatInstance>(); // Manually assigned renderers in the scene
 
+        private List<EnemyCombatInstance> _enemiesAlive = new List<EnemyCombatInstance>();
+
         int selectionIdx = 0;
         public void ActivateBattle(CharacterGroup enemies)
         {
@@ -45,6 +47,7 @@ namespace Assets
                 {
                     enemyRenderers[i].transform.gameObject.SetActive(true);
                     enemyRenderers[i].SetReference(_enemyTeam.party[i], this);
+                    _enemiesAlive.Add(enemyRenderers[i]);
                 }
 
 
@@ -57,6 +60,7 @@ namespace Assets
 
             }
             _selectedEnemy = enemyRenderers[0];
+            _selectedEnemy.SetSelected(true);
 
         }
 
@@ -64,6 +68,7 @@ namespace Assets
         {
             if (_selectedEnemy.Damage(amount))
             {
+                _enemiesAlive.Remove(_selectedEnemy);
                 foreach (EnemyCombatInstance instance in enemyRenderers)
                 {
                     if (!instance.IsDead())
@@ -88,6 +93,12 @@ namespace Assets
             }
             StopCombat();
         }
+
+        internal void SlowEnemy()
+        {
+            _selectedEnemy.Slow();
+        }
+
         public void DamagePlayer(float amount)
         {
             if (_selectedTeammate.Damage(amount))
@@ -116,8 +127,8 @@ namespace Assets
 
         public void SwitchTarget(int idx)
         {
-            selectionIdx = idx % (enemyRenderers.Length + 1);
-            _selectedEnemy = enemyRenderers[selectionIdx];
+            selectionIdx = idx % (_enemiesAlive.Count);
+            _selectedEnemy = _enemiesAlive[selectionIdx];
             foreach (EnemyCombatInstance instance in enemyRenderers)
             { instance.SetSelected(false); }
             _selectedEnemy.SetSelected(true);
@@ -140,5 +151,6 @@ namespace Assets
 
 
         }
+
     }
 }

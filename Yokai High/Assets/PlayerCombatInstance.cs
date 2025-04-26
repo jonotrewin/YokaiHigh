@@ -89,6 +89,9 @@ public class PlayerCombatInstance : MonoBehaviour
             case (EnemyActions.Capture):
                 _battleManager.AttemptCapture();
                 break;
+            case (EnemyActions.Slow):
+                _battleManager.SlowEnemy();
+                break;
         }
     }
 

@@ -21,6 +21,7 @@ public class EnemyCombatInstance : MonoBehaviour
 
     [SerializeField] private Transform _selection;
 
+    float SlowModifier = 1;
 
     private float Health;
 
@@ -48,6 +49,7 @@ public class EnemyCombatInstance : MonoBehaviour
 
         _spriteRenderer.color = Color.white;
 
+        SlowModifier = 1;
         HasInitialised = true;
     }
 
@@ -60,19 +62,19 @@ public class EnemyCombatInstance : MonoBehaviour
         _health.value = Health / _characterReference.hpMax;
 
         timer += Time.deltaTime;
-        Timer.fillAmount = timer / timePerAction;
+        Timer.fillAmount = timer / (timePerAction * SlowModifier);
 
-        if (timer > timePerAction)
+        if (timer > timePerAction * SlowModifier)
         {
             DoAction(_nextAction);
             DecideAction();
             timer = 0f;
         }
-        else if (timer * 4 > timePerAction * 3)
+        else if (timer * 4 > timePerAction * 3 * SlowModifier)
         {
             _spriteRenderer.sprite = _characterReference.characterSpriteAttack;
         }
-        else if (timer * 2 > timePerAction)
+        else if (timer * 2 > timePerAction * SlowModifier)
         {
             _spriteRenderer.sprite = _characterReference.characterSpriteReady;
         }
@@ -156,6 +158,11 @@ public class EnemyCombatInstance : MonoBehaviour
         _spriteRenderer.color = Color.green;
 
     }
+
+    internal void Slow()
+    {
+        SlowModifier *= 1.4f;
+    }
 }
 
 [Serializable]
@@ -165,6 +172,7 @@ public enum EnemyActions
     Attack,
     Heal,
     Capture,
+    Slow,
     None
 
 }

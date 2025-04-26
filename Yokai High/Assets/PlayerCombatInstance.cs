@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class PlayerCombatInstance : MonoBehaviour
@@ -64,6 +65,10 @@ public class PlayerCombatInstance : MonoBehaviour
         {
             _spriteRenderer.sprite = _characterReference.characterSpriteReady;
         }
+        else
+        {
+            _spriteRenderer.sprite = _characterReference.characterSprite;
+        }
 
 
     }
@@ -87,21 +92,25 @@ public class PlayerCombatInstance : MonoBehaviour
     public void SetAction(EnemyActions Action)
     {
         _nextAction = Action;
+        _headsUpText.text = "Next: " + Action.ToString();
     }
 
     public void SetAction(int Action)
     {
         _nextAction = (EnemyActions)Action;
+        _headsUpText.text = "Next: " + _nextAction.ToString();
+
     }
 
     internal bool Damage(float amount)
     {
         _characterReference.currentHP -= amount;
-        HasInitialised = false;
 
         if ((_characterReference.currentHP <= 0))
         {
             _spriteRenderer.color = Color.gray;
+            HasInitialised = false;
+
         }
 
         return (_characterReference.currentHP <= 0);

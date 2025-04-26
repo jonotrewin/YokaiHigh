@@ -16,6 +16,8 @@ public class EnemyCombatInstance : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _headsUpText;
     [SerializeField] private Slider _health;
 
+    private float Health;
+
     private float timePerAction { get { return (3 / _characterReference.speed); } }
     // magic number, dont worry about it!
     // higher speed does quicker actions makes more sense
@@ -35,7 +37,7 @@ public class EnemyCombatInstance : MonoBehaviour
         _spriteRenderer.sprite = character.characterSprite;
         _battleManager = battle;
 
-        _characterReference.HealFull();
+        Health = _characterReference.hpMax;
         DecideAction();
 
         _spriteRenderer.color = Color.white;
@@ -49,7 +51,7 @@ public class EnemyCombatInstance : MonoBehaviour
         if (!HasInitialised)
             return;
 
-        _health.value = _characterReference.currentHP / _characterReference.hpMax;
+        _health.value = Health / _characterReference.hpMax;
 
         timer += Time.deltaTime;
         Timer.fillAmount = timer / timePerAction;
@@ -68,7 +70,10 @@ public class EnemyCombatInstance : MonoBehaviour
         {
             _spriteRenderer.sprite = _characterReference.characterSpriteReady;
         }
-
+        else
+        {
+            _spriteRenderer.sprite = _characterReference.characterSprite;
+        }
 
     }
 
@@ -95,20 +100,23 @@ public class EnemyCombatInstance : MonoBehaviour
 
     public void DecideAction()
     {
-        EnemyActions current = _characterReference.GetAction();
+        _nextAction = _characterReference.GetAction();
+        _headsUpText.text = "Next: " + _nextAction.ToString();
+
     }
 
     internal bool Damage(float amount)
     {
-        _characterReference.currentHP -= amount;
-        HasInitialised = false;
+        Health -= amount;
 
-        if ((_characterReference.currentHP <= 0))
+        if ((Health <= 0))
         {
             _spriteRenderer.color = Color.gray;
+            HasInitialised = false;
+
         }
 
-        return (_characterReference.currentHP <= 0);
+        return (Health <= 0);
     }
 }
 

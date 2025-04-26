@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Assets
 {
@@ -16,7 +18,7 @@ namespace Assets
         public Sprite characterSpriteReady;
         public Sprite characterSpriteAttack;
 
-        List<ActionWeights> _actions = new List<ActionWeights>();
+        [SerializeField] List<ActionWeights> _actions = new List<ActionWeights>();
 
         public void HealFull()
         {
@@ -61,6 +63,7 @@ namespace Assets
 
     }
 
+    [Serializable]
     public class ActionWeights
     {
         public EnemyActions Action;

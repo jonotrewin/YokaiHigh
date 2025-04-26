@@ -15,10 +15,10 @@ public class PokedexEntry : MonoBehaviour
     CharacterStats characterRef;
     public void SetData(CharacterStats info)
     {
-        _title.text = info.Name;
-        _description.text = info.Description;
-        _image.sprite = info.characterSprite;
         characterRef = info;
+
+        _description.text = characterRef.Description;
+        _image.sprite = info.characterSprite;
         SetIsDiscovered();
     }
 
@@ -27,10 +27,13 @@ public class PokedexEntry : MonoBehaviour
         if (characterRef.IsDiscovered)
         {
             _image.color = Color.white;
+            _title.text = characterRef.Name;
+
         }
         else
         {
             _image.color = Color.black;
+            _title.text = new string('?', characterRef.Name.Length);
         }
     }
 

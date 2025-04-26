@@ -2,10 +2,13 @@ using Assets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class EnemyCombatInstance : MonoBehaviour
 {
@@ -15,6 +18,9 @@ public class EnemyCombatInstance : MonoBehaviour
     [SerializeField] private Image Timer;
     [SerializeField] private TextMeshProUGUI _headsUpText;
     [SerializeField] private Slider _health;
+
+    [SerializeField] private Transform _selection;
+
 
     private float Health;
 
@@ -77,6 +83,11 @@ public class EnemyCombatInstance : MonoBehaviour
 
     }
 
+    public void SetSelected(bool isSelected)
+    {
+        _selection.gameObject.SetActive(isSelected);
+    }
+
     private void DoAction(EnemyActions Action)
     {
         switch (Action)
@@ -116,10 +127,34 @@ public class EnemyCombatInstance : MonoBehaviour
         if ((Health <= 0))
         {
             _spriteRenderer.color = Color.gray;
+            _spriteRenderer.sprite = _characterReference.characterSprite;
+
             HasInitialised = false;
         }
 
         return (Health <= 0);
+    }
+
+    internal bool AttemptCapture()
+    {
+        float chanceToCapture = ((100 - Health) / 100f);
+        if (chanceToCapture >= Random.value)
+        {
+            Capture();
+            HasInitialised = false;
+            return true;
+        }
+
+        return false;
+    }
+
+    private void Capture()
+    {
+        _characterReference.currentHP = _characterReference.hpMax / 3;
+        PlayerInformation.Instance.characterGroup.party.Add(_characterReference);
+        _characterReference.IsDiscovered = true;
+        _spriteRenderer.color = Color.green;
+
     }
 }
 

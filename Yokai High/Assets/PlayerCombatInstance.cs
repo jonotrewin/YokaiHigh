@@ -86,6 +86,9 @@ public class PlayerCombatInstance : MonoBehaviour
             case (EnemyActions.Heal):
                 _characterReference.Heal(_characterReference.hpMax / 10);
                 break;
+            case (EnemyActions.Capture):
+                _battleManager.AttemptCapture();
+                break;
         }
     }
 
@@ -110,6 +113,7 @@ public class PlayerCombatInstance : MonoBehaviour
         {
             _spriteRenderer.color = Color.gray;
             HasInitialised = false;
+            _spriteRenderer.sprite = _characterReference.characterSprite;
 
         }
 

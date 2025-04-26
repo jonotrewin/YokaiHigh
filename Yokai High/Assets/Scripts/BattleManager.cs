@@ -26,7 +26,7 @@ namespace Assets
         [SerializeField] Camera battleCam;
         [SerializeField] EnemyCombatInstance[] enemyRenderers = Array.Empty<EnemyCombatInstance>(); // Manually assigned renderers in the scene
 
-
+        int selectionIdx = 0;
         public void ActivateBattle(CharacterGroup enemies)
         {
             _enemyTeam = enemies;
@@ -75,6 +75,19 @@ namespace Assets
                 StopCombat();
             }
         }
+        public void AttemptCapture()
+        {
+            _selectedEnemy.AttemptCapture();
+            foreach (EnemyCombatInstance instance in enemyRenderers)
+            {
+                if (!instance.IsDead())
+                {
+                    return;
+                }
+
+            }
+            StopCombat();
+        }
         public void DamagePlayer(float amount)
         {
             if (_selectedTeammate.Damage(amount))
@@ -86,19 +99,28 @@ namespace Assets
             }
         }
 
-        private void HandAnimationLogic()
-        {
-
-        }
 
         public void SwitchCharacter(CharacterStats selected)
         {
             _selectedTeammate.SetReference(selected, this);
         }
 
+        public void NextTarget()
+        {
+            SwitchTarget(selectionIdx + 1);
+        }
+        public void PreviousTarget()
+        {
+            SwitchTarget(selectionIdx - 1);
+        }
+
         public void SwitchTarget(int idx)
         {
-            _selectedEnemy = enemyRenderers[idx % (enemyRenderers.Length + 1)];
+            selectionIdx = idx % (enemyRenderers.Length + 1);
+            _selectedEnemy = enemyRenderers[selectionIdx];
+            foreach (EnemyCombatInstance instance in enemyRenderers)
+            { instance.SetSelected(false); }
+            _selectedEnemy.SetSelected(true);
         }
 
         public void StopCombat()

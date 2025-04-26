@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Base
   Description: fdsqfdsq
-  IsDiscovered: 0
+  IsDiscovered: 1
   speed: 0.5
-  currentHP: 88
+  currentHP: 40
   hpMax: 120
   strength: 10
-  characterSprite: {fileID: 21300000, guid: 092f5c54b856bcf41bb60c3da5e4549e, type: 3}
-  characterSpriteReady: {fileID: 21300000, guid: 5fb59ff4e3a252c48a2c120fd4a1489e,
+  characterSprite: {fileID: 21300000, guid: 4f8b2f7ec37867a4fa6fcf23d8c37a53, type: 3}
+  characterSpriteReady: {fileID: 21300000, guid: da2e22b9c26d6c04c991875cd22e2dda,
     type: 3}
-  characterSpriteAttack: {fileID: 21300000, guid: b7ca97c49a2762f4c8128003ebb4f37c,
+  characterSpriteAttack: {fileID: 21300000, guid: 5d94db45ca805774fb361f32cc74feab,
     type: 3}
   _actions:
   - Action: 1

@@ -9,15 +9,28 @@ namespace Assets
     [CreateAssetMenu(fileName = "New Character", menuName = "Character")]
     public class CharacterStats : ScriptableObject
     {
+        [Header("Basic info")]
+        public string Name;
+        public string Description;
+        public bool IsDiscovered = false;
+
+
+        [Space]
+        [Header("Combat stats")]
+
         public float speed;
         public float currentHP;
         public float hpMax;
         public float strength;
 
+        [Space]
+        [Header("sprites")]
         public Sprite characterSprite;
         public Sprite characterSpriteReady;
         public Sprite characterSpriteAttack;
 
+        [Space]
+        [Header("Combat moves")]
         [SerializeField] List<ActionWeights> _actions = new List<ActionWeights>();
 
         public void HealFull()

@@ -24,7 +24,7 @@ namespace Assets
 
         [Header("Variables")]
         [SerializeField] Camera battleCam;
-        [SerializeField] SpriteRenderer[] enemyRenderers; // Manually assigned renderers in the scene
+        [SerializeField] EnemyCombatInstance[] enemyRenderers = Array.Empty<EnemyCombatInstance>(); // Manually assigned renderers in the scene
 
 
         public void ActivateBattle(CharacterGroup enemies)
@@ -41,45 +41,14 @@ namespace Assets
                 if (i < _enemyTeam.party.Count)
                 {
                     enemyRenderers[i].transform.parent.gameObject.SetActive(true);
-
-
-                    // enemyRenderers[i].sprite = _enemyTeam.party[i].stats.characterSprite;
-
-
-
-
-
-
-                    // Create enemy sliders
-
-                    //
-                    //  Slider clonedSlider = Instantiate(playerSlider, enemySliderContainer);
-                    //
-                    //
-                    //  clonedSlider.gameObject.SetActive(true);
-                    //
-                    //
-                    //  enemySliders[enemyCharacters[i]] = clonedSlider;
-                    //
-                    //
-                    //  clonedSlider.targetGraphic.GetComponent<Image>().sprite = enemyCharacters[i].stats.headSprite;
-                    //
-
+                    enemyRenderers[i].SetReference(_enemyTeam.party[i], this);
                 }
 
 
                 else
-
-
                 {
-
-
                     enemyRenderers[i].transform.parent.gameObject.SetActive(false);
-
-
                     // Hide unused renderers
-
-
                 }
 
 

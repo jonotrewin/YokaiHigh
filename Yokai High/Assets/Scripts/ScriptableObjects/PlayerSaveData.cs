@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerSaveData : ScriptableObject
 {
     public bool isNewSave = true;
-    public List<Character> CharacterGroup = new List<Character>();
+    public List<CharacterStats> CharacterGroup = new List<CharacterStats>();
     public PlayerMovement movement;
 
 }

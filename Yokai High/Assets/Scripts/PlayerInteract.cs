@@ -12,14 +12,6 @@ namespace Assets
         [SerializeField] GameObject prompt;
         private void OnTriggerStay(Collider other)
         {
-            if (PlayerInformation.Instance.isInCombat)
-            {
-                if (prompt.activeInHierarchy == false)
-
-                    return;
-
-            }
-
             if (other.TryGetComponent<IInteractable>(out IInteractable interactable))
             {
                 if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Fire1"))

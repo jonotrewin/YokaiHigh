@@ -11,7 +11,7 @@ namespace Assets
 {
     public class AddToParty : MonoBehaviour
     {
-        public Character characterToAdd;
+        public CharacterStats characterToAdd;
 
         [YarnCommand("AddCharacterToParty")]
         public void AddCharacterToParty()

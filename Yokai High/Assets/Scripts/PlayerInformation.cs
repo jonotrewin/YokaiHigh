@@ -21,10 +21,16 @@ namespace Assets
 
         private void Start()
         {
-            Instance = this;
-
-            characterGroup = GetComponent<CharacterGroup>();
-            movement = GetComponent<PlayerMovement>();
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Debug.LogError("MULTIPLE PLAYER INFORMATIONS");
+            }
+            // characterGroup = GetComponent<CharacterGroup>();
+            // movement = GetComponent<PlayerMovement>();
 
             if (!SaveData.isNewSave)
             {
@@ -34,8 +40,8 @@ namespace Assets
 
         private void LoadData()
         {
-            characterGroup.party = SaveData.CharacterGroup;
-            movement = SaveData.movement;
+            // characterGroup.party = SaveData.CharacterGroup;
+            // movement = SaveData.movement;
         }
 
         private void OnDisable()

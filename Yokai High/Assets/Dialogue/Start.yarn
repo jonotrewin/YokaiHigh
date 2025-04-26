@@ -1,6 +1,13 @@
 ﻿title: Start
 tags:
 ---
+
+God: Are you a dev
+    -> ?? what
+    -> You know what?
+        Shelby the Snitch: we fight
+        <<startcombatup PrefectShelby>>
+
 That Voice In Your Head: Suki.
 That Voice In Your Head: Suki. Wake up.
     -> What's going on?
@@ -21,6 +28,14 @@ That Voice In Your Head: You got detention for being a weak little loser!
 That Voice In Your Head: (laughs) Kirikirikirikiri
     -> Wait, I know this voice!
         -> Vice-Principal Porkstein!
+     -> You know what?
+        Shelby the Snitch: ...?
+            -> Your hair looks bad.
+            -> That hairband makes you look fat.
+            -> You've always been a bitch, Shelby. You were born a bitch, and you'll die a bitch.
+        Shelby the Snitch: WHAT?!
+        Shelby the Snitch: You're going down!
+        <<startcombatup PrefectShelby>>
 Vice-Principal Porkstein: (laughs) KIRIKIRIKIRIKIRI!
 Vice-Principal Porkstein: YOU'RE GOING TO BE STUCK IN DETENTION FOREVER!!!
 

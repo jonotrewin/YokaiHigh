@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Next: ATK!'
+  m_text: 'Next: ATK!ff'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1062,6 +1062,8 @@ MonoBehaviour:
   _headsUpText: {fileID: 8835709352337552638}
   _health: {fileID: 2784418277354134644}
   _selection: {fileID: 5963583638092045989}
+  SpriteAnimator: {fileID: 2124521766974662894}
+  Shaker: {fileID: 6601795742706983444}
 --- !u!114 &150432778244747812
 MonoBehaviour:
   m_ObjectHideFlags: 0

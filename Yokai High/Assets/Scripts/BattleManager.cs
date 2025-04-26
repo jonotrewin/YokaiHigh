@@ -25,8 +25,12 @@ namespace Assets
         [Header("Variables")]
         [SerializeField] Camera battleCam;
         [SerializeField] EnemyCombatInstance[] enemyRenderers = Array.Empty<EnemyCombatInstance>(); // Manually assigned renderers in the scene
+        [SerializeField] Animator Shaker;
+
+
 
         private List<EnemyCombatInstance> _enemiesAlive = new List<EnemyCombatInstance>();
+
 
         int selectionIdx = 0;
         public void ActivateBattle(CharacterGroup enemies)

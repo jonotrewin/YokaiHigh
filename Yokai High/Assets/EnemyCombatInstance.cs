@@ -21,6 +21,10 @@ public class EnemyCombatInstance : MonoBehaviour
 
     [SerializeField] private Transform _selection;
 
+    [SerializeField] private SpriteAnimator SpriteAnimator;
+    [SerializeField] Animator Shaker;
+
+
     float SlowModifier = 1;
 
     private float Health;
@@ -72,15 +76,16 @@ public class EnemyCombatInstance : MonoBehaviour
         }
         else if (timer * 4 > timePerAction * 3 * SlowModifier)
         {
-            _spriteRenderer.sprite = _characterReference.characterSpriteAttack;
+            // _spriteRenderer.sprite = _characterReference.characterSpriteAttack;
+            SpriteAnimator.PlayShake();
         }
         else if (timer * 2 > timePerAction * SlowModifier)
         {
-            _spriteRenderer.sprite = _characterReference.characterSpriteReady;
+            // _spriteRenderer.sprite = _characterReference.characterSpriteReady;
         }
         else
         {
-            _spriteRenderer.sprite = _characterReference.characterSprite;
+            // _spriteRenderer.sprite = _characterReference.characterSprite;
         }
 
     }

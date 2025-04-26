@@ -14,13 +14,13 @@ namespace Assets
     public class BattleManager : MonoBehaviour
     {
         [Header("Meow meow!!! :3")]
-        [SerializeField] float healPerClick = 1f;
+        [Space]
 
         CharacterGroup _playerTeam;
         CharacterGroup _enemyTeam;
 
         Character _selectedTeammate;
-        Character _selectedEnemy;
+        EnemyCombatInstance _selectedEnemy;
 
         [Header("Variables")]
         [SerializeField] Camera battleCam;
@@ -57,11 +57,18 @@ namespace Assets
 
         public void DamageEnemy(float amount)
         {
-            _selectedEnemy.CurrentHealth -= amount;
+            if (_selectedEnemy.Damage(amount))
+            {
+            }
         }
         public void DamagePlayer(float amount)
         {
             _selectedTeammate.CurrentHealth -= amount;
+            if (_selectedTeammate.CurrentHealth < 0)
+            {
+                _selectedTeammate.CurrentHealth = 0;
+
+            }
         }
 
         private void HandAnimationLogic()
@@ -74,9 +81,9 @@ namespace Assets
             _selectedTeammate = selected;
         }
 
-        public void SwitchTarget(Character selected)
+        public void SwitchTarget(int idx)
         {
-            _selectedEnemy = selected;
+            _selectedEnemy = enemyRenderers[idx];
         }
 
         public void StopCombat()

@@ -37,6 +37,8 @@ public class EnemyCombatInstance : MonoBehaviour
         _characterReference.HealFull();
         DecideAction();
 
+        _spriteRenderer.color = Color.white;
+
         HasInitialised = true;
     }
 
@@ -86,6 +88,19 @@ public class EnemyCombatInstance : MonoBehaviour
     public void DecideAction()
     {
         EnemyActions current = _characterReference.GetAction();
+    }
+
+    internal bool Damage(float amount)
+    {
+        _characterReference.currentHP -= amount;
+        HasInitialised = false;
+
+        if ((_characterReference.currentHP <= 0))
+        {
+            _spriteRenderer.color = Color.gray;
+        }
+
+        return (_characterReference.currentHP <= 0);
     }
 }
 

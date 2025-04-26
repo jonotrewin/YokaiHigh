@@ -5499,8 +5499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c222032c1142cd7458dc45cc5373eb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healPerClick: 0.25
-  battleCam: {fileID: 0}
+  battleCam: {fileID: 1506484130}
   enemyRenderers:
   - {fileID: 8854275784709315505}
   - {fileID: 1400952402}

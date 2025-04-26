@@ -105,6 +105,10 @@ public class EnemyCombatInstance : MonoBehaviour
 
     }
 
+    public bool IsDead()
+    {
+        return !HasInitialised;
+    }
     internal bool Damage(float amount)
     {
         Health -= amount;

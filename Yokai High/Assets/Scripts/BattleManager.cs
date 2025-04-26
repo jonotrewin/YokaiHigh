@@ -64,12 +64,25 @@ namespace Assets
         {
             if (_selectedEnemy.Damage(amount))
             {
+                foreach (EnemyCombatInstance instance in enemyRenderers)
+                {
+                    if (!instance.IsDead())
+                    {
+                        return;
+                    }
+
+                }
+                StopCombat();
             }
         }
         public void DamagePlayer(float amount)
         {
             if (_selectedTeammate.Damage(amount))
             {
+                if (_playerTeam.IsDead())
+                {
+                    StopCombat();
+                }
             }
         }
 
@@ -90,6 +103,19 @@ namespace Assets
 
         public void StopCombat()
         {
+            AudioManager.Instance.Stop("CombatMusic");
+            AudioManager.Instance.Stop("CombatStart");
+
+            AudioManager.Instance.Play("WorldAmbience");
+            AudioManager.Instance.Play("WorldMusic");
+
+
+
+            PlayerInformation.Instance.ExitCombat();
+
+
+            SceneManager.UnloadSceneAsync("Combat");
+
 
         }
     }

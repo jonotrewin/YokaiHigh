@@ -113,7 +113,6 @@ public class EnemyCombatInstance : MonoBehaviour
         {
             _spriteRenderer.color = Color.gray;
             HasInitialised = false;
-
         }
 
         return (Health <= 0);

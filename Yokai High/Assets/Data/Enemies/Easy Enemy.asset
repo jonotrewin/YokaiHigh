@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Easy Enemy
   m_EditorClassIdentifier: 
   speed: 0.5
-  currentHP: 120
+  currentHP: 88
   hpMax: 120
-  strength: 20
+  strength: 10
   characterSprite: {fileID: 21300000, guid: 092f5c54b856bcf41bb60c3da5e4549e, type: 3}
   characterSpriteReady: {fileID: 21300000, guid: 5fb59ff4e3a252c48a2c120fd4a1489e,
     type: 3}

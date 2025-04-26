@@ -68,7 +68,7 @@ namespace Assets
         }
         public void DamagePlayer(float amount)
         {
-            if (_selectedEnemy.Damage(amount))
+            if (_selectedTeammate.Damage(amount))
             {
             }
         }

@@ -78,10 +78,10 @@ public class PlayerCombatInstance : MonoBehaviour
         switch (Action)
         {
             default:
-                _battleManager.DamagePlayer(1);
+                _battleManager.DamageEnemy(1);
                 break;
             case (EnemyActions.Attack):
-                _battleManager.DamagePlayer(_characterReference.strength);
+                _battleManager.DamageEnemy(_characterReference.strength);
                 break;
             case (EnemyActions.Heal):
                 _characterReference.Heal(_characterReference.hpMax / 10);

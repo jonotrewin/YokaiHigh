@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Tom tom tom
   Description: fdsqfdqs
-  IsDiscovered: 0
+  IsDiscovered: 1
   speed: 1
   currentHP: 100
   hpMax: 100

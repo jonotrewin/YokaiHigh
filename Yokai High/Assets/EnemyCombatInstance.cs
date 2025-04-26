@@ -57,16 +57,16 @@ public class EnemyCombatInstance : MonoBehaviour
             DecideAction();
             timer = 0f;
         }
-
+        else if (timer * 4 > timePerAction * 3)
+        {
+            _spriteRenderer.sprite = _characterReference.characterSpriteAttack;
+        }
         else if (timer * 2 > timePerAction)
         {
             _spriteRenderer.sprite = _characterReference.characterSpriteReady;
         }
 
-        else if (timer * 4 > timePerAction * 3)
-        {
-            _spriteRenderer.sprite = _characterReference.characterSpriteAttack;
-        }
+
     }
 
     private void DoAction(EnemyActions Action)

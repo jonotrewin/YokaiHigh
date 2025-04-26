@@ -15,11 +15,11 @@ namespace Assets
     public class StartCombat : MonoBehaviour
     {
         CharacterGroup characterGroup;
-        [SerializeField]public UnityEvent onDefeat;
-  
+        [SerializeField] public UnityEvent onDefeat;
+
         private void Start()
         {
-            
+
             characterGroup = GetComponent<CharacterGroup>();
             onDefeat.AddListener(SetDefeated);
         }
@@ -44,17 +44,17 @@ namespace Assets
 
 
             PlayerInformation.Instance.EnterCombat();
-            SceneManager.LoadScene("Combat", LoadSceneMode.Additive);
-            yield return new WaitForSeconds(1);
+            yield return SceneManager.LoadSceneAsync("Combat", LoadSceneMode.Additive);
+
             FindObjectOfType<BattleManager>().ActivateBattle(characterGroup);
         }
 
         public void SetDefeated()
         {
             var variableStorage = GameObject.FindObjectOfType<InMemoryVariableStorage>();
-     
 
-            variableStorage.SetValue("$"+this.GetInstanceID()+"defeated",true);
+
+            variableStorage.SetValue("$" + this.GetInstanceID() + "defeated", true);
 
         }
     }

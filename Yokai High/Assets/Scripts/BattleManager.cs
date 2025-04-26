@@ -40,14 +40,14 @@ namespace Assets
             {
                 if (i < _enemyTeam.party.Count)
                 {
-                    enemyRenderers[i].transform.parent.gameObject.SetActive(true);
+                    enemyRenderers[i].transform.gameObject.SetActive(true);
                     enemyRenderers[i].SetReference(_enemyTeam.party[i], this);
                 }
 
 
                 else
                 {
-                    enemyRenderers[i].transform.parent.gameObject.SetActive(false);
+                    enemyRenderers[i].transform.gameObject.SetActive(false);
                     // Hide unused renderers
                 }
 

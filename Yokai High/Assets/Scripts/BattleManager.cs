@@ -22,23 +22,83 @@ namespace Assets
         Character _selectedTeammate;
         Character _selectedEnemy;
 
+        [Header("Variables")]
+        [SerializeField] Camera battleCam;
+        [SerializeField] SpriteRenderer[] enemyRenderers; // Manually assigned renderers in the scene
 
 
         public void ActivateBattle(CharacterGroup enemies)
         {
             _enemyTeam = enemies;
+
+            _playerTeam = PlayerInformation.Instance.characterGroup;
+
+            // _selectedTeammate = _playerTeam.party[0];
+            // _selectedEnemy = _enemyTeam.party[0];
+
+            for (int i = 0; i < enemyRenderers.Length; i++)
+            {
+                if (i < _enemyTeam.party.Count)
+                {
+                    enemyRenderers[i].transform.parent.gameObject.SetActive(true);
+
+
+                    // enemyRenderers[i].sprite = _enemyTeam.party[i].stats.characterSprite;
+
+
+
+
+
+
+                    // Create enemy sliders
+
+                    //
+                    //  Slider clonedSlider = Instantiate(playerSlider, enemySliderContainer);
+                    //
+                    //
+                    //  clonedSlider.gameObject.SetActive(true);
+                    //
+                    //
+                    //  enemySliders[enemyCharacters[i]] = clonedSlider;
+                    //
+                    //
+                    //  clonedSlider.targetGraphic.GetComponent<Image>().sprite = enemyCharacters[i].stats.headSprite;
+                    //
+
+                }
+
+
+                else
+
+
+                {
+
+
+                    enemyRenderers[i].transform.parent.gameObject.SetActive(false);
+
+
+                    // Hide unused renderers
+
+
+                }
+
+
+            }
         }
 
-        public void Damage(Character character, float amount)
+        public void DamageEnemy(float amount)
         {
-
+            _selectedEnemy.CurrentHealth -= amount;
+        }
+        public void DamagePlayer(float amount)
+        {
+            _selectedTeammate.CurrentHealth -= amount;
         }
 
         private void HandAnimationLogic()
         {
 
         }
-
 
         public void SwitchCharacter(Character selected)
         {
@@ -52,7 +112,6 @@ namespace Assets
 
         public void StopCombat()
         {
-
 
         }
     }

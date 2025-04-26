@@ -19,7 +19,7 @@ namespace Assets
         CharacterGroup _playerTeam;
         CharacterGroup _enemyTeam;
 
-        Character _selectedTeammate;
+        [SerializeField] PlayerCombatInstance _selectedTeammate;
         EnemyCombatInstance _selectedEnemy;
 
         [Header("Variables")]
@@ -32,6 +32,9 @@ namespace Assets
             _enemyTeam = enemies;
 
             _playerTeam = PlayerInformation.Instance.characterGroup;
+            //_selectedTeammate = _playerTeam.party[0];
+
+            _selectedTeammate.SetReference(_playerTeam.party[0], this);
 
             // _selectedTeammate = _playerTeam.party[0];
             // _selectedEnemy = _enemyTeam.party[0];
@@ -53,6 +56,8 @@ namespace Assets
 
 
             }
+            _selectedEnemy = enemyRenderers[0];
+
         }
 
         public void DamageEnemy(float amount)
@@ -63,11 +68,8 @@ namespace Assets
         }
         public void DamagePlayer(float amount)
         {
-            _selectedTeammate.CurrentHealth -= amount;
-            if (_selectedTeammate.CurrentHealth < 0)
+            if (_selectedEnemy.Damage(amount))
             {
-                _selectedTeammate.CurrentHealth = 0;
-
             }
         }
 
@@ -76,14 +78,14 @@ namespace Assets
 
         }
 
-        public void SwitchCharacter(Character selected)
+        public void SwitchCharacter(CharacterStats selected)
         {
-            _selectedTeammate = selected;
+            _selectedTeammate.SetReference(selected, this);
         }
 
         public void SwitchTarget(int idx)
         {
-            _selectedEnemy = enemyRenderers[idx];
+            _selectedEnemy = enemyRenderers[idx % (enemyRenderers.Length + 1)];
         }
 
         public void StopCombat()

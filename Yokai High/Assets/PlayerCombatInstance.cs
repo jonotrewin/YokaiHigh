@@ -1,21 +1,19 @@
 using Assets;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
-public class EnemyCombatInstance : MonoBehaviour
+public class PlayerCombatInstance : MonoBehaviour
 {
     [Header("Meow meow!!! :3")]
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private CharacterStats _characterReference;
     [SerializeField] private Image Timer;
     [SerializeField] private TextMeshProUGUI _headsUpText;
-    [SerializeField] private Slider _health;
 
+    [SerializeField] private Slider _health;
     private float timePerAction { get { return (3 / _characterReference.speed); } }
     // magic number, dont worry about it!
     // higher speed does quicker actions makes more sense
@@ -36,7 +34,6 @@ public class EnemyCombatInstance : MonoBehaviour
         _battleManager = battle;
 
         _characterReference.HealFull();
-        DecideAction();
 
         _spriteRenderer.color = Color.white;
 
@@ -57,7 +54,6 @@ public class EnemyCombatInstance : MonoBehaviour
         if (timer > timePerAction)
         {
             DoAction(_nextAction);
-            DecideAction();
             timer = 0f;
         }
         else if (timer * 4 > timePerAction * 3)
@@ -79,23 +75,23 @@ public class EnemyCombatInstance : MonoBehaviour
             default:
                 _battleManager.DamagePlayer(1);
                 break;
-
             case (EnemyActions.Attack):
                 _battleManager.DamagePlayer(_characterReference.strength);
                 break;
-
             case (EnemyActions.Heal):
                 _characterReference.Heal(_characterReference.hpMax / 10);
-                break;
-
-            case (EnemyActions.None):
                 break;
         }
     }
 
-    public void DecideAction()
+    public void SetAction(EnemyActions Action)
     {
-        EnemyActions current = _characterReference.GetAction();
+        _nextAction = Action;
+    }
+
+    public void SetAction(int Action)
+    {
+        _nextAction = (EnemyActions)Action;
     }
 
     internal bool Damage(float amount)
@@ -110,15 +106,4 @@ public class EnemyCombatInstance : MonoBehaviour
 
         return (_characterReference.currentHP <= 0);
     }
-}
-
-[Serializable]
-public enum EnemyActions
-{
-    Flop,
-    Attack,
-    Heal,
-    Capture,
-    None
-
 }

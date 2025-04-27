@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+    path: Assets/Scenes/Brainrot/MainMenu.unity
+    guid: 08514e941fbecf146b5e3ccf3cbfd532
+  - enabled: 1
     path: Assets/Scenes/Brainrot/PrisonCell.unity
     guid: 792f0e5faf766f046934e7ba1aaad58a
   - enabled: 1

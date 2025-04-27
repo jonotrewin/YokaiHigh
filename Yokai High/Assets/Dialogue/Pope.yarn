@@ -1,0 +1,17 @@
+﻿title: Pope
+tags:
+---
+
+Pope Benedict: Greetings Child.
+Pope Benedict: It seems you have made it past my guards.
+Pope Benedict: You may have foiled my plan to ruin the minds of Italians, but I have something that is much more powerful than you simple brainrot animals?
+    -> What's that?
+        Pope Benedict: (laughs)
+        Pope Benedict: The ultimate brainrot...
+        Pope Benedict: CHRISTIANITY!
+            <<startcombatup PopeBenedict>>
+    -> Shut up, old man!
+        Pope Benedict: Impudent fool! I shall defeat you with the power of Christ!
+        <<startcombatup PopeBenedict>>
+
+===

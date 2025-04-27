@@ -5,10 +5,31 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+    path: Assets/Scenes/Brainrot/PrisonCell.unity
+    guid: 792f0e5faf766f046934e7ba1aaad58a
+  - enabled: 1
     path: Assets/Scenes/Combat.unity
     guid: e9d19db89d5ca8740b47eabad3bae57e
+  - enabled: 1
+    path: Assets/Scenes/Brainrot/RomeColoseum.unity
+    guid: 740cafbc2beda96499fa468a306ae3c8
+  - enabled: 1
+    path: Assets/Scenes/Brainrot/RomeExt.unity
+    guid: 7472169855fb75f44b40ae33bdf1c7af
+  - enabled: 1
+    path: Assets/Scenes/Brainrot/VaticanInt.unity
+    guid: 2c49150b0aa990d4a92a37e5a504d847
+  - enabled: 1
+    path: Assets/Scenes/Brainrot/VaticanSquare.unity
+    guid: 2448b31895b02cd44bda8cae40d07c3d
+  - enabled: 1
+    path: Assets/Scenes/Brainrot/Mountain.unity
+    guid: f04240b0544b6b74eb75f61f933c0300
+  - enabled: 1
+    path: Assets/Scenes/Brainrot/WorldMap.unity
+    guid: 4740a8a131720b2468417dead8a543dc
   m_configObjects: {}

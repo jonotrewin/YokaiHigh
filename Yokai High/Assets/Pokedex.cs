@@ -7,7 +7,7 @@ public class Pokedex : MonoBehaviour
 {
     [SerializeField] List<CharacterStats> _characterStats = new List<CharacterStats>();
     [SerializeField] PokedexEntry _baseEntry;
-    private void Start()
+    private void Awake()
     {
         foreach (CharacterStats characterStats in _characterStats)
         {

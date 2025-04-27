@@ -86,6 +86,7 @@ namespace Assets
         public void AttemptCapture()
         {
             _selectedEnemy.AttemptCapture();
+
             foreach (EnemyCombatInstance instance in enemyRenderers)
             {
                 if (!instance.IsDead())

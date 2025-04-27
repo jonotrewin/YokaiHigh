@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Popito Benedicto
   Description: JONATHAN PUT SHIT HERE
-  IsDiscovered: 1
-  speed: 2
+  IsDiscovered: 0
+  speed: 1
   currentHP: 33.333332
   hpMax: 200
-  strength: 10
+  strength: 40
   characterSprite: {fileID: 21300000, guid: 45de8a91bf25c8747976fa4cf1c46e69, type: 3}
   characterSpriteReady: {fileID: 21300000, guid: 41adca612883d6243a1fa4cb91548372,
     type: 3}

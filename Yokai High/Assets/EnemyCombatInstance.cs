@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -137,9 +138,25 @@ public class EnemyCombatInstance : MonoBehaviour
             _spriteRenderer.sprite = _characterReference.characterSprite;
 
             HasInitialised = false;
+
+
+            if (_characterReference.Name == "Popito Benedicto")
+            {
+                Debug.Log("GAME END");
+                StartCoroutine(GameEnding());
+            }
         }
 
+
+
+
         return (Health <= 0);
+    }
+
+    private IEnumerator GameEnding()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("GameEnding");
     }
 
     internal bool AttemptCapture()

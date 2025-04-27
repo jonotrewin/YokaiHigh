@@ -17,7 +17,7 @@ MonoBehaviour:
   IsDiscovered: 0
   speed: 0.2
   currentHP: 100
-  hpMax: 200
+  hpMax: 100
   strength: 30
   characterSprite: {fileID: 21300000, guid: 4c01111425e54a24fbd06ab2bd41d848, type: 3}
   characterSpriteReady: {fileID: 21300000, guid: 41adca612883d6243a1fa4cb91548372,

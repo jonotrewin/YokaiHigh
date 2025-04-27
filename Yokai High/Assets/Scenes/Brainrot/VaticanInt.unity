@@ -955,9 +955,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   party:
-  - {fileID: 11400000, guid: 8c3a7b5a536cff94fbfaab22d6a4719f, type: 2}
+  - {fileID: 11400000, guid: 06facea903afdc24583628b6e365f5ca, type: 2}
   - {fileID: 11400000, guid: ccd8a121c505bba4cb66439c36065db2, type: 2}
-  - {fileID: 11400000, guid: 8c3a7b5a536cff94fbfaab22d6a4719f, type: 2}
+  - {fileID: 11400000, guid: 06facea903afdc24583628b6e365f5ca, type: 2}
 --- !u!114 &559080358
 MonoBehaviour:
   m_ObjectHideFlags: 0

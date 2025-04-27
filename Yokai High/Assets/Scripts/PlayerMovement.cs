@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
             movementAnimation.Play("Walking");
 
-            AudioManager.Instance.Play("Walking");
+            //AudioManager.Instance.Play("Walking");
         }
     }
 

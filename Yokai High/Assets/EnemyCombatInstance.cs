@@ -158,9 +158,9 @@ public class EnemyCombatInstance : MonoBehaviour
     private void Capture()
     {
         _characterReference.currentHP = _characterReference.hpMax / 3;
-        PlayerInformation.Instance.characterGroup.party.Add(_characterReference);
         _characterReference.IsDiscovered = true;
         _spriteRenderer.color = Color.green;
+
 
     }
 

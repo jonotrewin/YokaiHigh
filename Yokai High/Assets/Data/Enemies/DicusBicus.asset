@@ -17,8 +17,8 @@ MonoBehaviour:
   IsDiscovered: 0
   speed: 1
   currentHP: 100
-  hpMax: 100
-  strength: 10
+  hpMax: 50
+  strength: 15
   characterSprite: {fileID: 21300000, guid: b717a4251e3cbf149b41450031ef5080, type: 3}
   characterSpriteReady: {fileID: 21300000, guid: 41adca612883d6243a1fa4cb91548372,
     type: 3}
@@ -26,6 +26,6 @@ MonoBehaviour:
     type: 3}
   _actions:
   - Action: 1
-    Weight: 2
+    Weight: 4
   - Action: 2
     Weight: 2

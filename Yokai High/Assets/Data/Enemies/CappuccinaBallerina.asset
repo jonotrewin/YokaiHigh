@@ -25,7 +25,5 @@ MonoBehaviour:
   characterSpriteAttack: {fileID: 21300000, guid: 6d9948c85fb3a0e49ad698e7391c1872,
     type: 3}
   _actions:
-  - Action: 1
-    Weight: 2
   - Action: 2
     Weight: 2

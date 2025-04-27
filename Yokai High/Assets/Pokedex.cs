@@ -15,6 +15,9 @@ public class Pokedex : MonoBehaviour
             thisObj.SetActive(true);
             thisObj.GetComponent<PokedexEntry>().SetData(characterStats);
 
+            if (characterStats.Name != "Tom Tom Tom Sahur")
+                characterStats.IsDiscovered = false;
+
         }
         _baseEntry.gameObject.SetActive(false);
     }

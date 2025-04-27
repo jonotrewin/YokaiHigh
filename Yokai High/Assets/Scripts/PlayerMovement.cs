@@ -1,6 +1,10 @@
+using Assets;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Yarn.Unity;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,18 +13,41 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private Animator movementAnimation;
 
+    [SerializeField] private Vector2 _distanceBeforeEncounter = new Vector2(30, 80);
+    private static float passedDistance;
+    private static float nextEncounterDistance = 0;
+
     void Start()
     {
+        _distanceBeforeEncounter = new Vector2(20, 40);
+
         rb = GetComponent<Rigidbody>();
+        if (nextEncounterDistance == 0)
+        {
+            GetNextEncounterDistance();
+            passedDistance = 0;
+        }
     }
 
-    void Update()
+    private void GetNextEncounterDistance()
+    {
+        nextEncounterDistance = UnityEngine.Random.Range(_distanceBeforeEncounter.x, _distanceBeforeEncounter.y);
+        passedDistance = 0;
+    }
+
+    void FixedUpdate()
     {
         MovePlayer();
     }
 
     void MovePlayer()
     {
+        if (PlayerInformation.Instance != null && PlayerInformation.Instance.isInCombat)
+        {
+            return;
+        }
+
+
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
 
@@ -46,8 +73,32 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rb.velocity = new Vector3(moveDirection.x * speed, rb.velocity.y, moveDirection.z * speed);
+
+            passedDistance += rb.velocity.magnitude * Time.deltaTime;
+            if (passedDistance > nextEncounterDistance)
+            {
+                PlayEncounter();
+                GetNextEncounterDistance();
+            }
+
+
             movementAnimation.Play("Walking");
+
             AudioManager.Instance.Play("Walking");
+        }
+    }
+
+    private void PlayEncounter()
+    {
+        if (SceneManager.GetActiveScene().name == "PrisonCell" || SceneManager.GetActiveScene().name == "VaticanInt")
+        {
+            return;
+        }
+        else
+        {
+            DialogueRunner dr = FindObjectOfType<DialogueRunner>();
+            if (dr.IsDialogueRunning) return;
+            dr.StartDialogue("RandomEncounter");
         }
     }
 }

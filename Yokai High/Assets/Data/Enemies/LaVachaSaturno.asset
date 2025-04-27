@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: La Vacha Saturno
   Description: JONATHAN PUT SHIT HERE
   IsDiscovered: 0
-  speed: 1
+  speed: 2
   currentHP: 100
   hpMax: 100
   strength: 10
@@ -29,3 +29,5 @@ MonoBehaviour:
     Weight: 2
   - Action: 2
     Weight: 2
+  - Action: 0
+    Weight: 4

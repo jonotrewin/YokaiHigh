@@ -15,10 +15,10 @@ MonoBehaviour:
   Name: Prr Prr Prr Patapim
   Description: JONATHAN PUT SHIT HERE
   IsDiscovered: 0
-  speed: 1
+  speed: 1.2
   currentHP: 100
   hpMax: 100
-  strength: 10
+  strength: 5
   characterSprite: {fileID: 21300000, guid: 843e7645b9c97204b892497a6278aa92, type: 3}
   characterSpriteReady: {fileID: 21300000, guid: 41adca612883d6243a1fa4cb91548372,
     type: 3}
@@ -26,6 +26,6 @@ MonoBehaviour:
     type: 3}
   _actions:
   - Action: 1
-    Weight: 2
+    Weight: 5
   - Action: 2
     Weight: 2

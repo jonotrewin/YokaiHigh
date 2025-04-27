@@ -36,11 +36,11 @@ namespace Assets
 
         private IEnumerator LoadCombat()
         {
-            AudioManager.Instance.Play("CombatMusic");
-            AudioManager.Instance.Play("CombatStart");
-
-            AudioManager.Instance.Stop("WorldAmbience");
-            AudioManager.Instance.Stop("WorldMusic");
+            //AudioManager.Instance.Play("CombatMusic");
+            //AudioManager.Instance.Play("CombatStart");
+            //
+            //AudioManager.Instance.Stop("WorldAmbience");
+            //AudioManager.Instance.Stop("WorldMusic");
 
 
             PlayerInformation.Instance.EnterCombat();

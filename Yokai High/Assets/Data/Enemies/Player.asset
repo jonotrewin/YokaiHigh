@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d14e4fce0c8dd49a2dcb62e3cafaf1, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  Name: Tom tom tom
-  Description: fdsqfdqs
+  Name: Tom Tom Tom Sahur
+  Description: A strong vengeful being taking revenge upon the catholic church.
   IsDiscovered: 1
-  speed: 1
-  currentHP: 100
-  hpMax: 100
-  strength: 10
-  characterSprite: {fileID: 21300000, guid: 64bf1e7f2466f58459ea967b88438489, type: 3}
-  characterSpriteReady: {fileID: 21300000, guid: 41adca612883d6243a1fa4cb91548372,
+  speed: 1.5
+  currentHP: 200
+  hpMax: 250
+  strength: 15
+  characterSprite: {fileID: 21300000, guid: f67d269acc07e8d4c87c9ff8f01b2285, type: 3}
+  characterSpriteReady: {fileID: 21300000, guid: bf0d482b9b4b36740bdd8d0188c6d605,
     type: 3}
-  characterSpriteAttack: {fileID: 21300000, guid: 6d9948c85fb3a0e49ad698e7391c1872,
+  characterSpriteAttack: {fileID: 21300000, guid: 31fc3f4a3ed70344e966454304c818b3,
     type: 3}
   _actions:
   - Action: 1

@@ -15,10 +15,10 @@ MonoBehaviour:
   Name: Tralalero Tralala
   Description: JONATHAN PUT SHIT HERE
   IsDiscovered: 0
-  speed: 1
+  speed: 2
   currentHP: 100
-  hpMax: 100
-  strength: 10
+  hpMax: 60
+  strength: 40
   characterSprite: {fileID: 21300000, guid: a1dcc51e001e7e24e8551c7d4fc2981f, type: 3}
   characterSpriteReady: {fileID: 21300000, guid: 41adca612883d6243a1fa4cb91548372,
     type: 3}

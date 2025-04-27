@@ -25,8 +25,8 @@ public class PlayerMovement : MonoBehaviour
         float moveZ = Input.GetAxisRaw("Vertical");
 
         // Get the camera's forward and right directions
-        Vector3 forward = cameraTransform.forward;
-        Vector3 right = cameraTransform.right;
+        Vector3 forward = transform.up;
+        Vector3 right = transform.right;
 
         // Flatten the directions to prevent unwanted vertical movement
         forward.y = 0;

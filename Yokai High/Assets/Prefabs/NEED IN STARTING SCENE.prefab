@@ -358,6 +358,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2519937658165754994, guid: 3cd00eea0ecc1ad4dadecd85f88636a3,
+        type: 3}
+      propertyPath: yarnProject
+      value: 
+      objectReference: {fileID: 7545569452688597077, guid: 756e5a90aadda1542a187f76a5698ff1,
+        type: 3}
     - target: {fileID: 4290327534832471426, guid: 3cd00eea0ecc1ad4dadecd85f88636a3,
         type: 3}
       propertyPath: m_Name

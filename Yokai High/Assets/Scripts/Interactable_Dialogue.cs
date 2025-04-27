@@ -1,17 +1,17 @@
+using Assets;
 using Febucci.UI;
 using Febucci.UI.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using Yarn.Unity;
-using Assets;
-using Unity.VisualScripting;
 
 public class Interactable_Dialogue : MonoBehaviour, IInteractable
 {
-    [SerializeField]string characterName; //this needs to be the same as name in yarn file
+    [SerializeField] string characterName; //this needs to be the same as name in yarn file
 
     DialogueRunner dr;
     TypewriterCore twc;
@@ -23,17 +23,26 @@ public class Interactable_Dialogue : MonoBehaviour, IInteractable
 
     private void Start()
     {
-       TryGetComponent<SpriteAnimator>(out anim);
+        TryGetComponent<SpriteAnimator>(out anim);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (dr == null) dr = FindObjectOfType<DialogueRunner>();
+        if (dr.IsDialogueRunning) return;
+        dr.StartDialogue(conversationStartNode);
+    }
+
+
     public void Interact()
     {
-        
-        
-        if(dr == null) dr = FindObjectOfType<DialogueRunner>();
-        if (dr.IsDialogueRunning) return; 
+
+
+        if (dr == null) dr = FindObjectOfType<DialogueRunner>();
+        if (dr.IsDialogueRunning) return;
         dr.StartDialogue(conversationStartNode);
-        if(twc ==  null) twc = FindObjectOfType<TypewriterCore>();
-     
+        if (twc == null) twc = FindObjectOfType<TypewriterCore>();
+
         twc.onTypewriterStart.AddListener(AnimateSpeech);
         twc.onTextShowed.AddListener(StopAnimateSpeech);
         TypewriterByCharacter typewriterByCharacter = twc as TypewriterByCharacter;
@@ -44,7 +53,7 @@ public class Interactable_Dialogue : MonoBehaviour, IInteractable
         if (characterNameUI == null) characterNameUI = GameObject.FindGameObjectWithTag("CharacterName").GetComponent<TextMeshProUGUI>();
 
         dr.onDialogueComplete.AddListener(RemoveAllListeners);
-   
+
 
 
 
@@ -64,14 +73,14 @@ public class Interactable_Dialogue : MonoBehaviour, IInteractable
     private void AnimateSpeech()
     {
         //call animation here
-        
-        if(characterName != characterNameUI.text) return;
+
+        if (characterName != characterNameUI.text) return;
         GetComponent<SpriteAnimator>().PlaySquashStretch();
         Debug.Log("Anim");
     }
     private void StopAnimateSpeech()
     {
-      
+
     }
 
     private void PlaySound()

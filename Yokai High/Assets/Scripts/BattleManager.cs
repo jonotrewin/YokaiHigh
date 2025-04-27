@@ -148,10 +148,15 @@ namespace Assets
 
 
             PlayerInformation.Instance.ExitCombat();
-
-
-            SceneManager.UnloadSceneAsync("Combat");
-
+            try
+            {
+                var whateva = (RandomEncounterGroup)GameObject.FindAnyObjectByType(typeof(RandomEncounterGroup));
+                whateva.GenerateNewEncounter();
+            }
+            finally
+            {
+                SceneManager.UnloadSceneAsync("Combat");
+            }
 
         }
 

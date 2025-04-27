@@ -15,6 +15,7 @@ public class RandomEncounterGroup : MonoBehaviour
 
     public void GenerateNewEncounter()
     {
+        Debug.Log("Generating new encounter!");
         List<CharacterStats> newPart = new List<CharacterStats>();
         int groupSize = Random.Range(1, 4);
         for (int i = 0; i < groupSize; i++)

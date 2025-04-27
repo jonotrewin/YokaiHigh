@@ -10,7 +10,17 @@ public class ChangeScene : MonoBehaviour
     {
         if(other.TryGetComponent<PlayerMovement>(out _))
         {
-            SceneManager.LoadScene(sceneName);
+            LoadScene(sceneName);
         }
+    }   
+
+    public void LoadScene(string textname)
+    {
+        SceneManager.LoadScene(textname);
+    }
+
+    public void LoadScene(string textname)
+    {
+        SceneManager.LoadScene(textname);
     }
 }

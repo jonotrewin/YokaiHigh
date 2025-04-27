@@ -1,0 +1,32 @@
+﻿title: Cardinal
+tags:
+---
+Friendly Priest: Quick, you fool. You must go now...
+Friendly Priest: While you still can!
+    -> Wait, I have some questions.
+        <<jump Cardinal_Questions>>
+    -> Ok.
+        <<stop>>
+===
+
+title: Cardinal_Questions
+tags: 
+---
+Friendly Priest: Hm?
+    -> What am I supposed to do?
+        Friendly Priest: You must travel the lands, collecting your fellow brainrot creatures. 
+            -> And then?
+                Friendly Priest: And then you must defeat the pope!
+                    -> Ok...
+                    -> Jesus.
+                        Friendly Priest: No, not him.
+                        <<jump Cardinal_Questions>>
+    -> Why did you free me?
+        Friendly Priest: As a good christian, it was my duty to do the right thing.
+            -> Just that?
+                Friendly Priest: And of course, prove the superiority of the orthodox church.
+                    -> There we go.
+                        <<jump Cardinal_Questions>>
+    -> Nevermind.
+        <<stop>>
+===

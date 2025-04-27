@@ -156,7 +156,7 @@ public class EnemyCombatInstance : MonoBehaviour
     private IEnumerator GameEnding()
     {
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("GameEnding");
+        SceneManager.LoadScene("Ending");
     }
 
     internal bool AttemptCapture()

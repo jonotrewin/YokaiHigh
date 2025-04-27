@@ -5,22 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-    [SerializeField]string sceneName;
+    [SerializeField] string sceneName;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<PlayerMovement>(out _))
+        if (other.TryGetComponent<PlayerMovement>(out _))
         {
             LoadScene(sceneName);
         }
-    }   
-
-    public void LoadScene(string textname)
-    {
-        SceneManager.LoadScene(textname);
     }
 
     public void LoadScene(string textname)
     {
         SceneManager.LoadScene(textname);
     }
+
 }
